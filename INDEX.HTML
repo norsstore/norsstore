@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NORS STORE — Premium Apps</title>
+  <style>
+    :root{
+      --red:#FF2400;
+      --bg:#0b0b10;
+      --card:#12121a;
+      --text:#f5f5f7;
+      --muted:#b9b9c6;
+      --line:rgba(255,255,255,.10);
+      --glow: 0 0 28px rgba(255,36,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(900px 400px at 20% 10%, rgba(255,36,0,.22), transparent 60%),
+        radial-gradient(800px 420px at 80% 0%, rgba(255,36,0,.14), transparent 55%),
+        radial-gradient(700px 400px at 50% 110%, rgba(255,36,0,.10), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,11,16,.65);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:1100px; margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900; text-transform:uppercase; letter-spacing:.5px;}
+    .dot{width:12px;height:12px;border-radius:50%; background:var(--red); box-shadow:var(--glow);}
+    .nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
+    .nav button{
+      cursor:pointer; border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      padding:8px 12px; border-radius:999px;
+      font-weight:800; font-size:12px; transition:.2s;
+    }
+    .nav button.active{border-color: rgba(255,36,0,.45); color: var(--text); box-shadow: 0 0 0 3px rgba(255,36,0,.10);}
+    .nav button:hover{transform: translateY(-1px);}
+
+    .wrap{max-width:1100px; margin:0 auto; padding: 22px 18px 36px;}
+    .page{
+      display:none;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow: 0 28px 80px rgba(0,0,0,.45);
+      padding: 26px;
+      min-height: 78vh;
+      animation: fade .25s ease;
+    }
+    .page.active{display:block;}
+    @keyframes fade{from{opacity:.5; transform: translateY(6px)} to{opacity:1; transform:none}}
+
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background: rgba(255,36,0,.12);
+      border:1px solid rgba(255,36,0,.35);
+      font-size:12px; font-weight:900;
+    }
+    .spark{width:8px;height:8px;border-radius:50%; background:var(--red); box-shadow:var(--glow);}
+    .muted{color:var(--muted)}
+    h1,h2,h3{margin:10px 0 10px}
+    h1{font-size:44px; line-height:1.05}
+    h2{font-size:28px}
+    p{line-height:1.65; margin:0 0 12px}
+
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; align-items:stretch;}
+    .card{
+      background: rgba(18,18,26,.55);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+    }
+
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px;}
+    .btn{
+      border:none; cursor:pointer; border-radius:14px;
+      padding:12px 14px; font-weight:900;
+      transition:.2s; display:inline-flex; align-items:center; gap:10px; user-select:none;
+    }
+    .btn-primary{background: var(--red); color:#0b0b10; box-shadow: 0 14px 28px rgba(255,36,0,.22);}
+    .btn-primary:hover{transform: translateY(-1px);}
+    .btn-ghost{background: rgba(255,255,255,.04); border:1px solid var(--line); color:var(--text);}
+    .btn-ghost:hover{transform: translateY(-1px); border-color: rgba(255,36,0,.35);}
+    .btn-small{padding:10px 12px; border-radius:12px; font-size:13px}
+
+    /* WhatsApp button style (optional) */
+    .btn-wa{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,36,0,.35);
+      color: var(--text);
+    }
+    .btn-wa:hover{transform: translateY(-1px); box-shadow: 0 0 0 3px rgba(255,36,0,.10);}
+
+    .hero{
+      grid-column: 1 / span 8;
+      padding:22px; border-radius:22px; border:1px solid var(--line);
+      background: radial-gradient(500px 240px at 20% 0%, rgba(255,36,0,.25), transparent 60%), rgba(255,255,255,.02);
+      position:relative; overflow:hidden;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:-40px;
+      background: radial-gradient(300px 220px at 70% 40%, rgba(255,36,0,.20), transparent 65%);
+      filter: blur(6px); pointer-events:none;
+    }
+    .hero > *{position:relative; z-index:2}
+    .stats{grid-column: 9 / span 4; display:flex; flex-direction:column; gap:12px;}
+    .stat{border:1px solid var(--line); border-radius:18px; padding:16px; background: rgba(0,0,0,.18);}
+    .stat .n{font-size:18px; font-weight:900}
+    .hotlist{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+    .chip{font-size:12px; padding:8px 10px; border-radius:999px; border:1px solid var(--line); color:var(--muted); background: rgba(255,255,255,.03);}
+
+    .toolbar{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start; margin-top:6px; margin-bottom:12px;}
+    .search{
+      flex:1; min-width:240px;
+      display:flex; gap:10px; align-items:center;
+      padding:12px 12px; border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .search input{width:100%; border:none; outline:none; background:transparent; color:var(--text); font-size:14px;}
+    .products{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px;}
+    .product{
+      grid-column: span 6;
+      border-radius:18px; padding:16px;
+      border:1px solid var(--line);
+      background: radial-gradient(260px 140px at 18% 18%, rgba(255,36,0,.14), transparent 60%), rgba(255,255,255,.02);
+    }
+    .phead{display:flex; justify-content:space-between; gap:10px; align-items:flex-start;}
+    .pname{font-weight:900; font-size:16px}
+    .tag{font-size:11px; font-weight:900; background: var(--red); color:#0b0b10; padding:7px 10px; border-radius:999px; white-space:nowrap;}
+    .plist{margin:12px 0 0; padding-left:18px; color:var(--muted); line-height:1.65; font-size:13px;}
+    .note{margin-top:10px; font-size:12px; color: rgba(185,185,198,.95); border-top:1px dashed rgba(255,255,255,.12); padding-top:10px;}
+
+    .paygrid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px;}
+    .pay-left{grid-column: span 6;}
+    .pay-right{grid-column: span 6;}
+    .paymethod{
+      display:flex; justify-content:space-between; gap:12px;
+      padding:16px; border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .pm-title{font-weight:900}
+    .pm-sub{margin-top:6px; font-size:13px; color:var(--muted); line-height:1.6}
+    .codebox{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    .mono{
+      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:13px;
+    }
+    label{font-size:12px; color:var(--muted); font-weight:800;}
+    .field{
+      margin-top:8px; padding:12px 12px; border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      width:100%;
+      outline:none;
+    }
+    textarea.field{min-height:92px; resize:vertical;}
+    .preview{
+      margin-top:12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      padding:14px;
+      color:var(--muted);
+      white-space:pre-wrap;
+      line-height:1.6;
+    }
+
+    .modal{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.62);
+      display:none; align-items:center; justify-content:center;
+      padding:18px; z-index:99;
+    }
+    .modal.show{display:flex}
+    .modal-card{
+      width:min(520px, 92vw);
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(18,18,26,.92);
+      backdrop-filter: blur(10px);
+      padding:16px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.55);
+    }
+    .qrisbox{
+      width:100%; aspect-ratio:1/1;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.18);
+      display:flex; align-items:center; justify-content:center;
+      background: radial-gradient(240px 120px at 30% 20%, rgba(255,36,0,.18), transparent 60%), rgba(255,255,255,.02);
+      text-align:center; color: var(--muted);
+      padding:12px; margin-top:12px;
+    }
+
+    #toast{
+      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+      background: rgba(18,18,26,.92);
+      border:1px solid var(--line);
+      color:var(--text);
+      padding:12px 14px;
+      border-radius:14px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      display:none; z-index:120;
+      max-width:min(560px, 92vw);
+    }
+
+    @media (max-width: 900px){
+      h1{font-size:36px}
+      .hero{grid-column: 1 / -1}
+      .stats{grid-column: 1 / -1; flex-direction:row; flex-wrap:wrap}
+      .product{grid-column: span 12}
+      .pay-left,.pay-right{grid-column: span 12}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="dot"></span><span>NORS STORE</span></div>
+      <div class="nav">
+        <button class="active" data-page="home">Beranda</button>
+        <button data-page="pricelist">Pricelist</button>
+        <button data-page="payment">Pembayaran</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- PAGE 1 -->
+    <section class="page active" id="home">
+      <div class="grid">
+        <div class="hero">
+          <span class="badge"><span class="spark"></span> Premium Apps • Harga Hemat • Fast Response</span>
+          <h1>Selamat datang di<br><span style="color:var(--red); text-shadow:var(--glow);">NORS STORE</span></h1>
+          <p class="muted">Pilih aplikasi premium favoritmu, cek harga, lalu lanjut ke pembayaran.</p>
+
+          <div class="hotlist">
+            <span class="chip">CANVA</span><span class="chip">CAPCUT</span><span class="chip">CHATGPT</span>
+            <span class="chip">GETCONTACT</span><span class="chip">HBO</span><span class="chip">NETFLIX</span>
+            <span class="chip">PERPLEXITY</span><span class="chip">PRIME</span><span class="chip">SPOTIFY</span>
+            <span class="chip">VIDIO</span><span class="chip">VIU</span><span class="chip">WETV</span>
+            <span class="chip">YOUTUBE</span><span class="chip">ZOOM</span>
+          </div>
+
+          <div class="btnrow">
+            <button class="btn btn-primary" data-pagego="pricelist">Lihat Pricelist →</button>
+            <button class="btn btn-ghost" id="btnHelp">Cara Order ?</button>
+          </div>
+
+          <p class="muted" style="margin-top:10px;font-size:12px;">*Beberapa paket perlu tanya stok terlebih dahulu.</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="n">⚡ Proses Cepat</div>
+            <div class="muted" style="margin-top:6px;">Setelah pembayaran, pesanan langsung diproses.</div>
+          </div>
+          <div class="stat">
+            <div class="n">🛡️ Garansi</div>
+            <div class="muted" style="margin-top:6px;">Tersedia paket full garansi sesuai ketentuan.</div>
+          </div>
+          <div class="stat">
+            <div class="n">✅ Banyak Pilihan</div>
+            <div class="muted" style="margin-top:6px;">Invite / Sharing / Private (tergantung produk).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="page" id="pricelist">
+      <span class="badge"><span class="spark"></span> Pricelist Premium Apps</span>
+      <h2>Daftar Aplikasi & Harga</h2>
+      <p class="muted">Cari nama aplikasi untuk memfilter daftar.</p>
+
+      <div class="toolbar">
+        <div class="search">
+          <b style="color:var(--muted)">🔎</b>
+          <input id="search" placeholder="Cari: canva / netflix / youtube / zoom ..." />
+        </div>
+        <div class="btnrow" style="margin-top:0">
+          <button class="btn btn-ghost btn-small" data-pagego="home">← Beranda</button>
+          <button class="btn btn-primary btn-small" data-pagego="payment">Ke Pembayaran →</button>
+        </div>
+      </div>
+
+      <div class="products" id="productList">
+        <!-- (Isi pricelist sama seperti sebelumnya, aku ringkas untuk fokus fitur WA)
+             Kamu bisa paste bagian pricelist yang kamu sudah pakai di versi sebelumnya.
+             Di bawah ini tetap aku isi lengkap. -->
+
+        <article class="product" data-name="canva">
+          <div class="phead"><div><div class="pname">CANVA PREMIUM</div><div class="muted" style="font-size:12px;margin-top:4px;">Invite / Owner / 1 Tahun</div></div><div class="tag">Best</div></div>
+          <ul class="plist">
+            <li><b>Via Invite (Full Garansi)</b>: 1 Bulan Rp 3.000 • 2 Bulan Rp 5.000 • 3 Bulan Rp 7.000</li>
+            <li><b>Owner (Full Garansi)</b>: 1 Bulan Rp 10.000 • 2 Bulan Rp 15.000</li>
+            <li><b>Lifetime 1 Tahun (Garansi 6 Bulan)</b>: 1 Tahun Rp 25.000</li>
+          </ul>
+          <div class="note">Tanyakan stok terlebih dahulu.</div>
+        </article>
+
+        <article class="product" data-name="capcut">
+          <div class="phead"><div><div class="pname">CAPCUT PRO</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div></div><div class="tag">Hot</div></div>
+          <ul class="plist">
+            <li><b>Private</b>: 7 Hari Rp 10.000 • 1 Bulan (27–35 hari) Rp 22.000</li>
+            <li><b>Sharing</b>: 1 Bulan Rp 12.000 (maks 1 device)</li>
+          </ul>
+          <div class="note">Private: garansi • email seller • bisa 4 device.</div>
+        </article>
+
+        <article class="product" data-name="chatgpt gpt chat gpt">
+          <div class="phead"><div><div class="pname">CHATGPT PRO</div><div class="muted" style="font-size:12px;margin-top:4px;">Invite / Sharing / Private</div></div><div class="tag">AI</div></div>
+          <ul class="plist">
+            <li><b>Invite 1 Bulan</b>: Rp 25.000 (email buyer)</li>
+            <li><b>Sharing 1 Bulan</b>: Rp 25.000 (email seller)</li>
+            <li><b>Private 1 Bulan</b>: Rp 40.000 (gmail belum pernah premium)</li>
+            <li><b>Private dari seller</b>: Rp 50.000</li>
+          </ul>
+          <div class="note">Invite cukup email tanpa sandi (privasi aman).</div>
+        </article>
+
+        <article class="product" data-name="hbo">
+          <div class="phead"><div><div class="pname">HBO</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div></div><div class="tag">Stream</div></div>
+          <ul class="plist">
+            <li><b>Private 1 Bulan</b>: Rp 100.000</li>
+            <li><b>Sharing 1 Bulan</b>: Rp 20.000</li>
+          </ul>
+          <div class="note">Tanyakan ketentuan login sebelum order.</div>
+        </article>
+
+        <article class="product" data-name="netflix">
+          <div class="phead"><div><div class="pname">NETFLIX 4K + UHD</div><div class="muted" style="font-size:12px;margin-top:4px;">1P1U / 1P2U / Harian / Private</div></div><div class="tag">4K</div></div>
+          <ul class="plist">
+            <li><b>1P1U</b>: 1 Bulan 26k • 2 Bulan 52k • 3 Bulan 75k (private profil, full garansi)</li>
+            <li><b>1P2U</b>: 1 Bulan 20k</li>
+            <li><b>Harian</b>: 2 Hari 5k (private profil)</li>
+            <li><b>Private Akun</b>: 1 Bulan 130k (5 profil, full garansi)</li>
+          </ul>
+          <div class="note">Pilih paket sesuai profil/user.</div>
+        </article>
+
+        <article class="product" data-name="perplexity">
+          <div class="phead"><div><div class="pname">PERPLEXITY PRO</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div></div><div class="tag">AI</div></div>
+          <ul class="plist">
+            <li><b>Private 1 Bulan</b>: Rp 25.000</li>
+            <li><b>Sharing 1 Bulan</b>: Rp 12.000</li>
+          </ul>
+          <div class="note">Akun dari seller.</div>
+        </article>
+
+        <article class="product" data-name="prime prime video">
+          <div class="phead"><div><div class="pname">PRIME VIDEO</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Indplan</div></div><div class="tag">Stream</div></div>
+          <ul class="plist">
+            <li><b>Private</b>: 1 Bulan Rp 15.000</li>
+            <li><b>Indplan (seller)</b>: 3 Bulan Rp 38.000</li>
+            <li><b>Indplan (buyer)</b>: 4 Bulan Rp 30.000 (akun belum pernah premium; akun lama bisa)</li>
+          </ul>
+          <div class="note">Pastikan akun memenuhi syarat untuk Indplan buyer.</div>
+        </article>
+
+        <article class="product" data-name="vidio">
+          <div class="phead"><div><div class="pname">VIDIO.COM</div><div class="muted" style="font-size:12px;margin-top:4px;">Platinum / Extra / Ultimate</div></div><div class="tag">Local</div></div>
+          <ul class="plist">
+            <li><b>Platinum</b>: All 34k • Mobile 24k • TV 10k • 3 Bulan TV 20k • 1 Tahun TV 35k</li>
+            <li><b>Extra</b>: All 60k</li>
+            <li><b>Ultimate</b>: All 140k • Mobile 75k</li>
+          </ul>
+          <div class="note">Pilih sesuai device.</div>
+        </article>
+
+        <article class="product" data-name="viu">
+          <div class="phead"><div><div class="pname">VIU</div><div class="muted" style="font-size:12px;margin-top:4px;">Durasi fleksibel</div></div><div class="tag">Hemat</div></div>
+          <ul class="plist">
+            <li>1 Bulan 5k • 3 Bulan 10k • 6 Bulan 13k • 1 Tahun 25k</li>
+          </ul>
+          <div class="note">Tanyakan stok sebelum order.</div>
+        </article>
+
+        <article class="product" data-name="youtube">
+          <div class="phead"><div><div class="pname">YOUTUBE PREMIUM</div><div class="muted" style="font-size:12px;margin-top:4px;">Indplan / Mixplan / Invite</div></div><div class="tag">Music+</div></div>
+          <ul class="plist">
+            <li><b>Indplan</b>: 30 Hari 10k • 44 Hari 13k • 3 Bulan 20k (No gar) • 3 Bulan 35k (Garansi)</li>
+            <li><b>Mixplan</b>: 3 Bulan 20k (1 bulan seller, 2 bulan invite)</li>
+            <li><b>Invite</b>: 1 Bulan 6k • 2 Bulan 10k • 3 Bulan 15k (email buyer)</li>
+          </ul>
+          <div class="note">Tanyakan stok terlebih dahulu.</div>
+        </article>
+
+        <article class="product" data-name="wetv we tv">
+          <div class="phead"><div><div class="pname">WETV</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div></div><div class="tag">Drama</div></div>
+          <ul class="plist">
+            <li><b>Private</b>: 1 Bulan Rp 29.000 (3 device)</li>
+            <li><b>Sharing</b>: 1 Bulan Rp 15.000 (1 device)</li>
+          </ul>
+          <div class="note">Pilih sesuai kebutuhan device.</div>
+        </article>
+
+        <article class="product" data-name="zoom">
+          <div class="phead"><div><div class="pname">ZOOM PREMIUM</div><div class="muted" style="font-size:12px;margin-top:4px;">Akun privat</div></div><div class="tag">Meet</div></div>
+          <ul class="plist">
+            <li>14 Hari Rp 12.000 (unlimited waktu • max 100 peserta)</li>
+          </ul>
+          <div class="note">Tanyakan kebutuhan meeting sebelum order.</div>
+        </article>
+
+        <article class="product" data-name="getcontact">
+          <div class="phead"><div><div class="pname">GETCONTACT</div><div class="muted" style="font-size:12px;margin-top:4px;">Belum ada rincian harga</div></div><div class="tag">Info</div></div>
+          <ul class="plist"><li><b>Tanyakan stok & harga</b> terlebih dahulu.</li></ul>
+          <div class="note">Kirim detail paket jika ada, biar aku update.</div>
+        </article>
+
+        <article class="product" data-name="spotify">
+          <div class="phead"><div><div class="pname">SPOTIFY</div><div class="muted" style="font-size:12px;margin-top:4px;">Belum ada rincian harga</div></div><div class="tag">Info</div></div>
+          <ul class="plist"><li><b>Tanyakan stok & harga</b> terlebih dahulu.</li></ul>
+          <div class="note">Kirim paket (individual/family) kalau ada.</div>
+        </article>
+      </div>
+
+      <div class="btnrow" style="justify-content:space-between; margin-top:16px;">
+        <button class="btn btn-ghost" data-pagego="home">← Kembali</button>
+        <button class="btn btn-primary" data-pagego="payment">Lanjut Pembayaran →</button>
+      </div>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section class="page" id="payment">
+      <span class="badge"><span class="spark"></span> Pembayaran</span>
+      <h2>Metode Pembayaran</h2>
+      <p class="muted">Setelah bayar, kirim bukti + detail pesanan ke WhatsApp admin.</p>
+
+      <div class="paygrid" style="margin-top:12px;">
+        <div class="pay-left card">
+          <div class="paymethod">
+            <div>
+              <div class="pm-title">💵 Cash</div>
+              <div class="pm-sub">Bayar tunai (COD/ketemu) sesuai kesepakatan.</div>
+            </div>
+            <button class="btn btn-ghost btn-small" onclick="toast('Cash dipilih. Silakan chat admin untuk atur lokasi/waktu.')">Pilih</button>
+          </div>
+
+          <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(255,36,0,.35),transparent); margin:14px 0;"></div>
+
+          <div class="paymethod">
+            <div>
+              <div class="pm-title">🏦 Transfer SEABANK</div>
+              <div class="pm-sub">No. Rek: <b>8218731710</b></div>
+              <div class="codebox">
+                <span class="mono" id="norek">8218731710</span>
+                <button class="btn btn-primary btn-small" id="copyBtn">Salin Rekening</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(255,36,0,.35),transparent); margin:14px 0;"></div>
+
+          <div class="paymethod">
+            <div>
+              <div class="pm-title">📲 QRIS</div>
+              <div class="pm-sub">Klik untuk lihat QRIS (placeholder, bisa diganti QR asli).</div>
+            </div>
+            <button class="btn btn-primary btn-small" id="openQris">Lihat QRIS</button>
+          </div>
+
+          <div class="note" style="margin-top:12px;">
+            Nomor admin WhatsApp: <b>085700382972</b>
+          </div>
+        </div>
+
+        <div class="pay-right card">
+          <h3 style="margin-top:0;">Form Ringkas Pesanan</h3>
+          <p class="muted">Klik “Buat Pesan”, lalu kamu bisa <b>Salin</b> atau langsung <b>Kirim ke WhatsApp</b>.</p>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;">
+            <div>
+              <label>Nama</label>
+              <input class="field" id="nama" placeholder="contoh: Hafiz" />
+            </div>
+            <div>
+              <label>Metode Bayar</label>
+              <select class="field" id="metode">
+                <option>Cash</option>
+                <option>Transfer SEABANK</option>
+                <option>QRIS</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <label>Pesanan</label>
+            <textarea class="field" id="pesanan" placeholder="contoh: Netflix 1P1U 1 Bulan / Canva Invite 3 Bulan"></textarea>
+          </div>
+
+          <div style="margin-top:12px;">
+            <label>Catatan (opsional)</label>
+            <input class="field" id="catatan" placeholder="contoh: email buyer: .... (tanpa sandi)" />
+          </div>
+
+          <div class="btnrow" style="justify-content:space-between;">
+            <button class="btn btn-ghost btn-small" data-pagego="pricelist">← Pricelist</button>
+            <button class="btn btn-primary btn-small" id="makeMsg">Buat Pesan</button>
+          </div>
+
+          <div class="preview" id="preview">Isi form, lalu klik "Buat Pesan".</div>
+
+          <div class="btnrow" style="margin-top:12px;">
+            <button class="btn btn-ghost btn-small" id="copyMsg">Salin Pesan</button>
+            <button class="btn btn-wa btn-small" id="sendWa">Kirim ke WhatsApp</button>
+          </div>
+
+          <p class="muted" style="margin-top:10px; font-size:12px;">
+            *Tombol WhatsApp akan membuka aplikasi WA/WhatsApp Web ke nomor admin dengan teks otomatis.
+          </p>
+        </div>
+      </div>
+
+      <div class="btnrow" style="justify-content:space-between; margin-top:16px;">
+        <button class="btn btn-ghost" data-pagego="pricelist">← Kembali</button>
+        <button class="btn btn-primary" onclick="toast('Siap! Tinggal kirim bukti pembayaran + detail pesanan ke WhatsApp admin.')">Selesai ✓</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- QRIS Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+        <div style="font-weight:900;">QRIS Payment</div>
+        <button class="btn btn-ghost btn-small" id="closeQris">Tutup</button>
+      </div>
+      <div class="qrisbox">
+        <div>
+          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">[QRIS]</div>
+          <div> <br><code>&lt;<img src="QRIS.PNG"> style="width:100%;border-radius:12px"&gt;</code></div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:12px;">.</p>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"><span id="toastText"></span></div>
+
+  <script>
+    // ====== SAFE PAGE NAV ======
+    const pages = ["home","pricelist","payment"];
+    const navButtons = document.querySelectorAll(".nav button");
+
+    function showPage(id){
+      pages.forEach(pid => {
+        const el = document.getElementById(pid);
+        if(el) el.classList.toggle("active", pid === id);
+      });
+      navButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.page === id));
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    navButtons.forEach(btn => btn.addEventListener("click", () => showPage(btn.dataset.page)));
+    document.addEventListener("click", (e) => {
+      const go = e.target.closest("[data-pagego]");
+      if(go) showPage(go.dataset.pagego);
+    });
+
+    // Help
+    document.getElementById("btnHelp").addEventListener("click", () => {
+      toast("Cara order: (1) pilih aplikasi & paket (2) tanya stok jika perlu (3) bayar Cash/Seabank/QRIS (4) klik Kirim WhatsApp + lampirkan bukti pembayaran.");
+    });
+
+    // ====== SEARCH FILTER ======
+    const search = document.getElementById("search");
+    const productList = document.getElementById("productList");
+    const items = Array.from(productList.querySelectorAll(".product"));
+    search.addEventListener("input", () => {
+      const q = (search.value || "").trim().toLowerCase();
+      items.forEach(el => {
+        const name = (el.dataset.name || "").toLowerCase();
+        el.style.display = (!q || name.includes(q)) ? "" : "none";
+      });
+    });
+
+    // ====== COPY REK ======
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const norek = document.getElementById("norek").innerText.trim();
+      try{
+        await navigator.clipboard.writeText(norek);
+        toast("Nomor rekening disalin: " + norek);
+      }catch{
+        toast("Gagal menyalin. Salin manual: " + norek);
+      }
+    });
+
+    // ====== QRIS MODAL ======
+    const modal = document.getElementById("modal");
+    document.getElementById("openQris").addEventListener("click", () => modal.classList.add("show"));
+    document.getElementById("closeQris").addEventListener("click", () => modal.classList.remove("show"));
+    modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("show"); });
+
+    // ====== FORM MESSAGE + WHATSAPP ======
+    const WA_NUMBER = "6285700382972"; // 085700382972 -> 62857...
+    const nama = document.getElementById("nama");
+    const metode = document.getElementById("metode");
+    const pesanan = document.getElementById("pesanan");
+    const catatan = document.getElementById("catatan");
+    const preview = document.getElementById("preview");
+
+    function buildMessage(){
+      const n = (nama.value || "—").trim();
+      const m = (metode.value || "—").trim();
+      const p = (pesanan.value || "—").trim();
+      const c = (catatan.value || "").trim();
+
+      let msg =
+`Halo Admin NORS STORE!
+
+Nama: ${n}
+Metode bayar: ${m}
+Pesanan: ${p}`;
+      if(c) msg += `\nCatatan: ${c}`;
+      msg += `\n\nSaya sudah siap order. Mohon info stok & prosesnya ya. Terima kasih!`;
+      return msg;
+    }
+
+    document.getElementById("makeMsg").addEventListener("click", () => {
+      preview.textContent = buildMessage();
+      toast("Pesan dibuat. Kamu bisa salin atau kirim ke WhatsApp.");
+    });
+
+    document.getElementById("copyMsg").addEventListener("click", async () => {
+      const msg = preview.textContent.trim();
+      if(!msg || msg.includes('Isi form')) return toast("Buat pesan dulu ya.");
+      try{
+        await navigator.clipboard.writeText(msg);
+        toast("Pesan disalin.");
+      }catch{
+        toast("Gagal menyalin. Salin manual dari preview.");
+      }
+    });
+
+    document.getElementById("sendWa").addEventListener("click", () => {
+      const msg = buildMessage();
+      if(!msg || msg.includes("Pesanan: —")){
+        toast("Isi minimal nama & pesanan dulu ya.");
+        return;
+      }
+      const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+      toast("Membuka WhatsApp ke admin…");
+    });
+
+    // ====== TOAST ======
+    let tmr;
+    function toast(text){
+      const box = document.getElementById("toast");
+      const tt = document.getElementById("toastText");
+      tt.textContent = text;
+      box.style.display = "block";
+      clearTimeout(tmr);
+      tmr = setTimeout(() => box.style.display = "none", 3200);
+    }
+
+    // start
+    showPage("home");
+  </script>
+</body>
+</html>
