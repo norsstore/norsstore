@@ -7,22 +7,27 @@
 
   <style>
     :root{
-      --red:#FF2400;
-      --bg:#0b0b10;
-      --card:#12121a;
-      --text:#f5f5f7;
-      --muted:#b9b9c6;
-      --line:rgba(255,255,255,.10);
-      --glow: 0 0 28px rgba(255,36,0,.35);
+      /* Light blue + white theme */
+      --blue:#2563EB;
+      --blue2:#60A5FA;
+      --blue3:#93C5FD;
+      --bg:#F7FBFF;
+      --card:#FFFFFF;
+      --card2:#F1F7FF;
+      --text:#0F172A;   /* slate-900 */
+      --muted:#475569;  /* slate-600 */
+      --line:rgba(15,23,42,.10);
+      --shadow: 0 18px 60px rgba(2,6,23,.10);
+      --glow: 0 0 28px rgba(37,99,235,.22);
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:
-        radial-gradient(900px 400px at 20% 10%, rgba(255,36,0,.22), transparent 60%),
-        radial-gradient(800px 420px at 80% 0%, rgba(255,36,0,.14), transparent 55%),
-        radial-gradient(700px 400px at 50% 110%, rgba(255,36,0,.10), transparent 55%),
+        radial-gradient(900px 420px at 15% 0%, rgba(96,165,250,.35), transparent 60%),
+        radial-gradient(900px 420px at 85% 0%, rgba(147,197,253,.30), transparent 55%),
+        radial-gradient(900px 420px at 50% 110%, rgba(37,99,235,.10), transparent 60%),
         var(--bg);
       color:var(--text);
       overflow-x:hidden;
@@ -31,7 +36,7 @@
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: rgba(11,11,16,.65);
+      background: rgba(255,255,255,.72);
       border-bottom: 1px solid var(--line);
     }
     .topbar-inner{
@@ -43,23 +48,33 @@
       font-weight:900; text-transform:uppercase; letter-spacing:.5px;
     }
     .logo{
-      width:30px; height:30px;
-      border-radius:10px;
+      width:34px; height:34px;
+      border-radius:12px;
       object-fit:cover;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 14px 30px rgba(0,0,0,.35);
-      background: rgba(255,255,255,.03);
+      border:1px solid rgba(15,23,42,.10);
+      box-shadow: 0 10px 24px rgba(2,6,23,.10);
+      background: #fff;
     }
-    .dot{width:12px;height:12px;border-radius:50%; background:var(--red); box-shadow:var(--glow);}
+    .dot{
+      width:12px;height:12px;border-radius:50%;
+      background:linear-gradient(180deg, var(--blue2), var(--blue));
+      box-shadow:var(--glow);
+    }
+
     .nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
     .nav button{
       cursor:pointer; border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.70);
       color: var(--muted);
       padding:8px 12px; border-radius:999px;
-      font-weight:800; font-size:12px; transition:.2s;
+      font-weight:900; font-size:12px; transition:.2s;
     }
-    .nav button.active{border-color: rgba(255,36,0,.45); color: var(--text); box-shadow: 0 0 0 3px rgba(255,36,0,.10);}
+    .nav button.active{
+      border-color: rgba(37,99,235,.35);
+      color: var(--text);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.10);
+      background: rgba(96,165,250,.12);
+    }
     .nav button:hover{transform: translateY(-1px);}
 
     .wrap{max-width:1100px; margin:0 auto; padding: 22px 18px 36px;}
@@ -67,23 +82,24 @@
       display:none;
       border:1px solid var(--line);
       border-radius:22px;
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      box-shadow: 0 28px 80px rgba(0,0,0,.45);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(241,247,255,.85));
+      box-shadow: var(--shadow);
       padding: 26px;
       min-height: 78vh;
       animation: fade .25s ease;
     }
     .page.active{display:block;}
-    @keyframes fade{from{opacity:.5; transform: translateY(6px)} to{opacity:1; transform:none}}
+    @keyframes fade{from{opacity:.6; transform: translateY(6px)} to{opacity:1; transform:none}}
 
     .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 12px; border-radius:999px;
-      background: rgba(255,36,0,.12);
-      border:1px solid rgba(255,36,0,.35);
+      background: rgba(96,165,250,.18);
+      border:1px solid rgba(37,99,235,.18);
       font-size:12px; font-weight:900;
+      color:#0B1B3A;
     }
-    .spark{width:8px;height:8px;border-radius:50%; background:var(--red); box-shadow:var(--glow);}
+    .spark{width:8px;height:8px;border-radius:50%; background:var(--blue); box-shadow:var(--glow);}
     .muted{color:var(--muted)}
     h1,h2,h3{margin:10px 0 10px}
     h1{font-size:44px; line-height:1.05}
@@ -92,11 +108,11 @@
 
     .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; align-items:stretch;}
     .card{
-      background: rgba(18,18,26,.55);
+      background: rgba(255,255,255,.88);
       border:1px solid var(--line);
       border-radius:18px;
       padding:18px;
-      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+      box-shadow: 0 14px 40px rgba(2,6,23,.08);
     }
 
     .btnrow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px;}
@@ -105,36 +121,53 @@
       padding:12px 14px; font-weight:900;
       transition:.2s; display:inline-flex; align-items:center; gap:10px; user-select:none;
     }
-    .btn-primary{background: var(--red); color:#0b0b10; box-shadow: 0 14px 28px rgba(255,36,0,.22);}
+    .btn-primary{
+      background: linear-gradient(180deg, var(--blue2), var(--blue));
+      color:#fff;
+      box-shadow: 0 14px 28px rgba(37,99,235,.18);
+    }
     .btn-primary:hover{transform: translateY(-1px);}
-    .btn-ghost{background: rgba(255,255,255,.04); border:1px solid var(--line); color:var(--text);}
-    .btn-ghost:hover{transform: translateY(-1px); border-color: rgba(255,36,0,.35);}
+    .btn-ghost{
+      background: rgba(255,255,255,.72);
+      border:1px solid var(--line);
+      color:var(--text);
+    }
+    .btn-ghost:hover{transform: translateY(-1px); border-color: rgba(37,99,235,.25);}
     .btn-small{padding:10px 12px; border-radius:12px; font-size:13px}
-
     .btn-wa{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,36,0,.35);
+      background: rgba(96,165,250,.14);
+      border: 1px solid rgba(37,99,235,.22);
       color: var(--text);
     }
-    .btn-wa:hover{transform: translateY(-1px); box-shadow: 0 0 0 3px rgba(255,36,0,.10);}
+    .btn-wa:hover{transform: translateY(-1px); box-shadow: 0 0 0 3px rgba(37,99,235,.10);}
 
     .hero{
       grid-column: 1 / span 8;
       padding:22px; border-radius:22px; border:1px solid var(--line);
-      background: radial-gradient(500px 240px at 20% 0%, rgba(255,36,0,.25), transparent 60%), rgba(255,255,255,.02);
+      background:
+        radial-gradient(520px 260px at 20% 0%, rgba(96,165,250,.35), transparent 60%),
+        radial-gradient(520px 260px at 85% 30%, rgba(147,197,253,.25), transparent 60%),
+        rgba(255,255,255,.80);
       position:relative; overflow:hidden;
+      box-shadow: 0 18px 60px rgba(2,6,23,.08);
     }
     .hero::after{
       content:""; position:absolute; inset:-40px;
-      background: radial-gradient(300px 220px at 70% 40%, rgba(255,36,0,.20), transparent 65%);
+      background: radial-gradient(320px 240px at 70% 40%, rgba(37,99,235,.12), transparent 65%);
       filter: blur(6px); pointer-events:none;
     }
     .hero > *{position:relative; z-index:2}
     .stats{grid-column: 9 / span 4; display:flex; flex-direction:column; gap:12px;}
-    .stat{border:1px solid var(--line); border-radius:18px; padding:16px; background: rgba(0,0,0,.18);}
+    .stat{border:1px solid var(--line); border-radius:18px; padding:16px; background: rgba(255,255,255,.80); box-shadow: 0 14px 40px rgba(2,6,23,.06);}
     .stat .n{font-size:18px; font-weight:900}
     .hotlist{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
-    .chip{font-size:12px; padding:8px 10px; border-radius:999px; border:1px solid var(--line); color:var(--muted); background: rgba(255,255,255,.03);}
+    .chip{
+      font-size:12px; padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(37,99,235,.14);
+      color:#0B1B3A;
+      background: rgba(96,165,250,.10);
+      font-weight:900;
+    }
 
     .toolbar{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start; margin-top:6px; margin-bottom:12px;}
     .search{
@@ -142,21 +175,31 @@
       display:flex; gap:10px; align-items:center;
       padding:12px 12px; border-radius:14px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.75);
     }
     .search input{width:100%; border:none; outline:none; background:transparent; color:var(--text); font-size:14px;}
+
     .products{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px;}
     .product{
       grid-column: span 6;
       border-radius:18px; padding:16px;
       border:1px solid var(--line);
-      background: radial-gradient(260px 140px at 18% 18%, rgba(255,36,0,.14), transparent 60%), rgba(255,255,255,.02);
+      background:
+        radial-gradient(280px 160px at 18% 18%, rgba(96,165,250,.20), transparent 60%),
+        rgba(255,255,255,.84);
+      box-shadow: 0 16px 44px rgba(2,6,23,.07);
     }
     .phead{display:flex; justify-content:space-between; gap:10px; align-items:flex-start;}
     .pname{font-weight:900; font-size:16px}
-    .tag{font-size:11px; font-weight:900; background: var(--red); color:#0b0b10; padding:7px 10px; border-radius:999px; white-space:nowrap;}
+    .tag{
+      font-size:11px; font-weight:900;
+      background: linear-gradient(180deg, var(--blue2), var(--blue));
+      color:#fff;
+      padding:7px 10px; border-radius:999px; white-space:nowrap;
+    }
     .plist{margin:12px 0 0; padding-left:18px; color:var(--muted); line-height:1.65; font-size:13px;}
-    .note{margin-top:10px; font-size:12px; color: rgba(185,185,198,.95); border-top:1px dashed rgba(255,255,255,.12); padding-top:10px;}
+    .note{margin-top:10px; font-size:12px; color: rgba(71,85,105,.95); border-top:1px dashed rgba(15,23,42,.15); padding-top:10px;}
+    .orderline{display:flex; justify-content:flex-end; margin-top:12px;}
 
     .paygrid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px;}
     .pay-left{grid-column: span 6;}
@@ -165,22 +208,24 @@
       display:flex; justify-content:space-between; gap:12px;
       padding:16px; border-radius:18px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.80);
+      box-shadow: 0 14px 40px rgba(2,6,23,.06);
     }
     .pm-title{font-weight:900}
     .pm-sub{margin-top:6px; font-size:13px; color:var(--muted); line-height:1.6}
     .codebox{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
     .mono{
       padding:10px 12px; border-radius:12px; border:1px solid var(--line);
-      background: rgba(0,0,0,.18);
+      background: rgba(241,247,255,.90);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       font-size:13px;
+      color:#0B1B3A;
     }
-    label{font-size:12px; color:var(--muted); font-weight:800;}
+    label{font-size:12px; color:var(--muted); font-weight:900;}
     .field{
       margin-top:8px; padding:12px 12px; border-radius:14px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.85);
       color: var(--text);
       width:100%;
       outline:none;
@@ -190,7 +235,7 @@
       margin-top:12px;
       border-radius:16px;
       border:1px solid var(--line);
-      background: rgba(0,0,0,.18);
+      background: rgba(241,247,255,.90);
       padding:14px;
       color:var(--muted);
       white-space:pre-wrap;
@@ -199,7 +244,7 @@
 
     .modal{
       position:fixed; inset:0;
-      background: rgba(0,0,0,.62);
+      background: rgba(2,6,23,.45);
       display:none; align-items:center; justify-content:center;
       padding:18px; z-index:99;
     }
@@ -208,19 +253,19 @@
       width:min(520px, 92vw);
       border-radius:18px;
       border:1px solid var(--line);
-      background: rgba(18,18,26,.92);
+      background: rgba(255,255,255,.92);
       backdrop-filter: blur(10px);
       padding:16px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.55);
+      box-shadow: 0 24px 80px rgba(2,6,23,.18);
     }
 
-    /* QRIS: KUNCI KECIL & RAPi */
+    /* QRIS fix kecil */
     .qrisbox{
       width:100%;
       border-radius:14px;
-      border:1px dashed rgba(255,255,255,.18);
+      border:1px dashed rgba(37,99,235,.22);
       display:flex; align-items:center; justify-content:center;
-      background: radial-gradient(240px 120px at 30% 20%, rgba(255,36,0,.18), transparent 60%), rgba(255,255,255,.02);
+      background: rgba(241,247,255,.85);
       padding:14px; margin-top:12px;
     }
     #qrisImg{
@@ -229,21 +274,23 @@
       object-fit: contain;
       border-radius: 12px;
       display:block;
+      border: 1px solid rgba(15,23,42,.10);
+      background:#fff;
     }
 
     #toast{
       position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      background: rgba(18,18,26,.92);
+      background: rgba(255,255,255,.92);
       border:1px solid var(--line);
       color:var(--text);
       padding:12px 14px;
       border-radius:14px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      box-shadow: 0 18px 60px rgba(2,6,23,.18);
       display:none; z-index:120;
       max-width:min(560px, 92vw);
     }
 
-    /* SOSMED SECTION */
+    /* SOSMED */
     .social-wrap{
       max-width:1100px;
       margin: 18px auto 0;
@@ -252,8 +299,8 @@
     .social{
       border:1px solid var(--line);
       border-radius:22px;
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      background: rgba(255,255,255,.86);
+      box-shadow: var(--shadow);
       padding:18px;
     }
     .social h3{margin:0 0 8px}
@@ -268,13 +315,13 @@
       border:1px solid var(--line);
       border-radius:18px;
       padding:14px;
-      background: rgba(18,18,26,.55);
+      background: rgba(241,247,255,.85);
       min-width: 0;
     }
     .social .label{
       font-size:12px;
       color:var(--muted);
-      font-weight:800;
+      font-weight:900;
     }
     .social .value{
       margin-top:6px;
@@ -292,6 +339,17 @@
       gap:10px;
       flex-wrap:wrap;
       margin-top:12px;
+    }
+
+    /* Floating order button */
+    .float-order{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 130;
+      border-radius: 999px;
+      padding: 12px 16px;
+      box-shadow: 0 18px 60px rgba(2,6,23,.18);
     }
 
     @media (max-width: 900px){
@@ -322,6 +380,9 @@
     </div>
   </div>
 
+  <!-- Floating order button -->
+  <button class="btn btn-primary float-order" id="floatOrder">🛒 ORDER SEKARANG</button>
+
   <div class="wrap">
 
     <!-- PAGE 1 -->
@@ -329,7 +390,7 @@
       <div class="grid">
         <div class="hero">
           <span class="badge"><span class="spark"></span> Premium Apps • Harga Hemat • Fast Response</span>
-          <h1>Selamat datang di<br><span style="color:var(--red); text-shadow:var(--glow);">NORS STORE</span></h1>
+          <h1>Selamat datang di<br><span style="color:var(--blue); text-shadow:var(--glow);">NORS STORE</span></h1>
           <p class="muted">Pilih aplikasi premium favoritmu, cek harga, lalu lanjut ke pembayaran.</p>
 
           <div class="hotlist">
@@ -342,6 +403,7 @@
 
           <div class="btnrow">
             <button class="btn btn-primary" data-pagego="pricelist">Lihat Pricelist →</button>
+            <button class="btn btn-primary" data-pagego="payment">🛒 Order Sekarang</button>
             <button class="btn btn-ghost" id="btnHelp">Cara Order ?</button>
           </div>
 
@@ -378,13 +440,13 @@
         </div>
         <div class="btnrow" style="margin-top:0">
           <button class="btn btn-ghost btn-small" data-pagego="home">← Beranda</button>
-          <button class="btn btn-primary btn-small" data-pagego="payment">Ke Pembayaran →</button>
+          <button class="btn btn-primary btn-small" data-pagego="payment">🛒 Order Sekarang</button>
         </div>
       </div>
 
       <div class="products" id="productList">
 
-        <article class="product" data-name="canva">
+        <article class="product" data-name="canva" data-order="CANVA PREMIUM - (pilih paket: Invite/Owner/1 Tahun)">
           <div class="phead"><div><div class="pname">CANVA PREMIUM</div><div class="muted" style="font-size:12px;margin-top:4px;">Invite / Owner / 1 Tahun</div></div><div class="tag">Best</div></div>
           <ul class="plist">
             <li><b>Via Invite (Full Garansi)</b>: 1 Bulan Rp 3.000 • 2 Bulan Rp 5.000 • 3 Bulan Rp 7.000</li>
@@ -392,18 +454,20 @@
             <li><b>Lifetime 1 Tahun (Garansi 6 Bulan)</b>: 1 Tahun Rp 25.000</li>
           </ul>
           <div class="note">Tanyakan stok terlebih dahulu.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="capcut">
+        <article class="product" data-name="capcut" data-order="CAPCUT PRO - (pilih paket: Private/Sharing)">
           <div class="phead"><div><div class="pname">CAPCUT PRO</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div></div><div class="tag">Hot</div></div>
           <ul class="plist">
             <li><b>Private</b>: 7 Hari Rp 10.000 • 1 Bulan (27–35 hari) Rp 22.000</li>
             <li><b>Sharing</b>: 1 Bulan Rp 12.000 (maks 1 device)</li>
           </ul>
           <div class="note">Private: garansi • email seller • bisa 4 device.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="chatgpt gpt chat gpt">
+        <article class="product" data-name="chatgpt gpt chat gpt" data-order="CHATGPT PRO - (pilih paket: Invite/Sharing/Private)">
           <div class="phead"><div><div class="pname">CHATGPT PRO</div><div class="muted" style="font-size:12px;margin-top:4px;">Invite / Sharing / Private</div></div><div class="tag">AI</div></div>
           <ul class="plist">
             <li><b>Invite 1 Bulan</b>: Rp 25.000 (email buyer)</li>
@@ -412,18 +476,20 @@
             <li><b>Private dari seller</b>: Rp 50.000</li>
           </ul>
           <div class="note">Invite cukup email tanpa sandi (privasi aman).</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="hbo">
+        <article class="product" data-name="hbo" data-order="HBO - (pilih paket: Private/Sharing)">
           <div class="phead"><div><div class="pname">HBO</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div></div><div class="tag">Stream</div></div>
           <ul class="plist">
             <li><b>Private 1 Bulan</b>: Rp 100.000</li>
             <li><b>Sharing 1 Bulan</b>: Rp 20.000</li>
           </ul>
           <div class="note">Tanyakan ketentuan login sebelum order.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="netflix">
+        <article class="product" data-name="netflix" data-order="NETFLIX 4K + UHD - (pilih paket: 1P1U/1P2U/Harian/Private)">
           <div class="phead"><div><div class="pname">NETFLIX 4K + UHD</div><div class="muted" style="font-size:12px;margin-top:4px;">1P1U / 1P2U / Harian / Private</div></div><div class="tag">4K</div></div>
           <ul class="plist">
             <li><b>1P1U</b>: 1 Bulan 26k • 2 Bulan 52k • 3 Bulan 75k (private profil, full garansi)</li>
@@ -432,18 +498,20 @@
             <li><b>Private Akun</b>: 1 Bulan 130k (5 profil, full garansi)</li>
           </ul>
           <div class="note">Pilih paket sesuai profil/user.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="perplexity">
+        <article class="product" data-name="perplexity" data-order="PERPLEXITY PRO - (pilih paket: Private/Sharing)">
           <div class="phead"><div><div class="pname">PERPLEXITY PRO</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div></div><div class="tag">AI</div></div>
           <ul class="plist">
             <li><b>Private 1 Bulan</b>: Rp 25.000</li>
             <li><b>Sharing 1 Bulan</b>: Rp 12.000</li>
           </ul>
           <div class="note">Akun dari seller.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="prime prime video">
+        <article class="product" data-name="prime prime video" data-order="PRIME VIDEO - (pilih paket: Private/Indplan)">
           <div class="phead"><div><div class="pname">PRIME VIDEO</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Indplan</div></div><div class="tag">Stream</div></div>
           <ul class="plist">
             <li><b>Private</b>: 1 Bulan Rp 15.000</li>
@@ -451,9 +519,10 @@
             <li><b>Indplan (buyer)</b>: 4 Bulan Rp 30.000 (akun belum pernah premium; akun lama bisa)</li>
           </ul>
           <div class="note">Pastikan akun memenuhi syarat untuk Indplan buyer.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="vidio">
+        <article class="product" data-name="vidio" data-order="VIDIO.COM - (pilih paket: Platinum/Extra/Ultimate)">
           <div class="phead"><div><div class="pname">VIDIO.COM</div><div class="muted" style="font-size:12px;margin-top:4px;">Platinum / Extra / Ultimate</div></div><div class="tag">Local</div></div>
           <ul class="plist">
             <li><b>Platinum</b>: All 34k • Mobile 24k • TV 10k • 3 Bulan TV 20k • 1 Tahun TV 35k</li>
@@ -461,17 +530,19 @@
             <li><b>Ultimate</b>: All 140k • Mobile 75k</li>
           </ul>
           <div class="note">Pilih sesuai device.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="viu">
+        <article class="product" data-name="viu" data-order="VIU - (pilih durasi)">
           <div class="phead"><div><div class="pname">VIU</div><div class="muted" style="font-size:12px;margin-top:4px;">Durasi fleksibel</div></div><div class="tag">Hemat</div></div>
           <ul class="plist">
             <li>1 Bulan 5k • 3 Bulan 10k • 6 Bulan 13k • 1 Tahun 25k</li>
           </ul>
           <div class="note">Tanyakan stok sebelum order.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="youtube">
+        <article class="product" data-name="youtube" data-order="YOUTUBE PREMIUM - (pilih paket: Indplan/Mixplan/Invite)">
           <div class="phead"><div><div class="pname">YOUTUBE PREMIUM</div><div class="muted" style="font-size:12px;margin-top:4px;">Indplan / Mixplan / Invite</div></div><div class="tag">Music+</div></div>
           <ul class="plist">
             <li><b>Indplan</b>: 30 Hari 10k • 44 Hari 13k • 3 Bulan 20k (No gar) • 3 Bulan 35k (Garansi)</li>
@@ -479,42 +550,47 @@
             <li><b>Invite</b>: 1 Bulan 6k • 2 Bulan 10k • 3 Bulan 15k (email buyer)</li>
           </ul>
           <div class="note">Tanyakan stok terlebih dahulu.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="wetv we tv">
+        <article class="product" data-name="wetv we tv" data-order="WETV - (pilih paket: Private/Sharing)">
           <div class="phead"><div><div class="pname">WETV</div><div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div></div><div class="tag">Drama</div></div>
           <ul class="plist">
             <li><b>Private</b>: 1 Bulan Rp 29.000 (3 device)</li>
             <li><b>Sharing</b>: 1 Bulan Rp 15.000 (1 device)</li>
           </ul>
           <div class="note">Pilih sesuai kebutuhan device.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="zoom">
+        <article class="product" data-name="zoom" data-order="ZOOM PREMIUM - 14 Hari Rp 12.000">
           <div class="phead"><div><div class="pname">ZOOM PREMIUM</div><div class="muted" style="font-size:12px;margin-top:4px;">Akun privat</div></div><div class="tag">Meet</div></div>
           <ul class="plist">
             <li>14 Hari Rp 12.000 (unlimited waktu • max 100 peserta)</li>
           </ul>
           <div class="note">Tanyakan kebutuhan meeting sebelum order.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="getcontact">
+        <article class="product" data-name="getcontact" data-order="GETCONTACT - tanya harga & stok">
           <div class="phead"><div><div class="pname">GETCONTACT</div><div class="muted" style="font-size:12px;margin-top:4px;">Belum ada rincian harga</div></div><div class="tag">Info</div></div>
           <ul class="plist"><li><b>Tanyakan stok & harga</b> terlebih dahulu.</li></ul>
           <div class="note">Kirim detail paket jika ada, biar aku update.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
-        <article class="product" data-name="spotify">
+        <article class="product" data-name="spotify" data-order="SPOTIFY - tanya harga & stok">
           <div class="phead"><div><div class="pname">SPOTIFY</div><div class="muted" style="font-size:12px;margin-top:4px;">Belum ada rincian harga</div></div><div class="tag">Info</div></div>
           <ul class="plist"><li><b>Tanyakan stok & harga</b> terlebih dahulu.</li></ul>
           <div class="note">Kirim paket (individual/family) kalau ada.</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
         </article>
 
       </div>
 
       <div class="btnrow" style="justify-content:space-between; margin-top:16px;">
         <button class="btn btn-ghost" data-pagego="home">← Kembali</button>
-        <button class="btn btn-primary" data-pagego="payment">Lanjut Pembayaran →</button>
+        <button class="btn btn-primary" data-pagego="payment">🛒 Order Sekarang →</button>
       </div>
     </section>
 
@@ -523,6 +599,10 @@
       <span class="badge"><span class="spark"></span> Pembayaran</span>
       <h2>Metode Pembayaran</h2>
       <p class="muted">Setelah bayar, kirim bukti + detail pesanan ke WhatsApp admin.</p>
+
+      <div class="btnrow" style="margin-top:8px;">
+        <button class="btn btn-primary" id="goWaNow">🛒 ORDER SEKARANG (Chat Admin)</button>
+      </div>
 
       <div class="paygrid" style="margin-top:12px;">
         <div class="pay-left card">
@@ -534,7 +614,7 @@
             <button class="btn btn-ghost btn-small" onclick="toast('Cash dipilih. Silakan chat admin untuk atur lokasi/waktu.')">Pilih</button>
           </div>
 
-          <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(255,36,0,.35),transparent); margin:14px 0;"></div>
+          <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(37,99,235,.25),transparent); margin:14px 0;"></div>
 
           <div class="paymethod">
             <div>
@@ -547,7 +627,7 @@
             </div>
           </div>
 
-          <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(255,36,0,.35),transparent); margin:14px 0;"></div>
+          <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(37,99,235,.25),transparent); margin:14px 0;"></div>
 
           <div class="paymethod">
             <div>
@@ -617,7 +697,7 @@
 
   </div>
 
-  <!-- SOSIAL MEDIA (di bawah semua halaman) -->
+  <!-- SOSIAL MEDIA -->
   <div class="social-wrap">
     <div class="social">
       <h3>Info Media Sosial</h3>
@@ -694,6 +774,9 @@
       if(go) showPage(go.dataset.pagego);
     });
 
+    // Floating order => buka payment
+    document.getElementById("floatOrder").addEventListener("click", () => showPage("payment"));
+
     // Help
     document.getElementById("btnHelp").addEventListener("click", () => {
       toast("Cara order: (1) pilih aplikasi & paket (2) tanya stok jika perlu (3) bayar Cash/Seabank/QRIS (4) klik Kirim WhatsApp + lampirkan bukti pembayaran.");
@@ -729,7 +812,7 @@
     modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("show"); });
 
     // ====== FORM MESSAGE + WHATSAPP ======
-    const WA_NUMBER = "6285700382972"; // 085700382972 -> 62857...
+    const WA_NUMBER = "6285700382972";
     const nama = document.getElementById("nama");
     const metode = document.getElementById("metode");
     const pesanan = document.getElementById("pesanan");
@@ -778,6 +861,26 @@ Pesanan: ${p}`;
       const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
       window.open(url, "_blank", "noopener,noreferrer");
       toast("Membuka WhatsApp ke admin…");
+    });
+
+    document.getElementById("goWaNow").addEventListener("click", () => {
+      const msg = buildMessage();
+      const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+      toast("Membuka WhatsApp ke admin…");
+    });
+
+    // ====== ORDER BUTTON TIAP PRODUK ======
+    document.querySelectorAll(".orderBtn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const card = e.target.closest(".product");
+        const orderText = (card?.dataset?.order || card?.querySelector(".pname")?.textContent || "Order").trim();
+        showPage("payment");
+        const current = (pesanan.value || "").trim();
+        pesanan.value = current ? (current + " | " + orderText) : orderText;
+        preview.textContent = buildMessage();
+        toast("Pesanan dimasukkan ke form. Tinggal isi nama & kirim WA.");
+      });
     });
 
     // ====== TOAST ======
