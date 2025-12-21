@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NORS STORE — Premium Apps</title>
+
   <style>
     :root{
       --red:#FF2400;
@@ -37,7 +38,6 @@
       max-width:1100px; margin:0 auto; padding:14px 18px;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-
     .brand{
       display:flex; align-items:center; gap:10px;
       font-weight:900; text-transform:uppercase; letter-spacing:.5px;
@@ -48,9 +48,9 @@
       object-fit:cover;
       border:1px solid rgba(255,255,255,.12);
       box-shadow: 0 14px 30px rgba(0,0,0,.35);
+      background: rgba(255,255,255,.03);
     }
     .dot{width:12px;height:12px;border-radius:50%; background:var(--red); box-shadow:var(--glow);}
-
     .nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
     .nav button{
       cursor:pointer; border:1px solid var(--line);
@@ -59,11 +59,7 @@
       padding:8px 12px; border-radius:999px;
       font-weight:800; font-size:12px; transition:.2s;
     }
-    .nav button.active{
-      border-color: rgba(255,36,0,.45);
-      color: var(--text);
-      box-shadow: 0 0 0 3px rgba(255,36,0,.10);
-    }
+    .nav button.active{border-color: rgba(255,36,0,.45); color: var(--text); box-shadow: 0 0 0 3px rgba(255,36,0,.10);}
     .nav button:hover{transform: translateY(-1px);}
 
     .wrap{max-width:1100px; margin:0 auto; padding: 22px 18px 36px;}
@@ -218,21 +214,18 @@
       box-shadow: 0 24px 80px rgba(0,0,0,.55);
     }
 
-    /* QRIS AREA: kecil & FIX */
+    /* QRIS: KUNCI KECIL & RAPi */
     .qrisbox{
       width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px;
-      margin-top:12px;
       border-radius:14px;
       border:1px dashed rgba(255,255,255,.18);
+      display:flex; align-items:center; justify-content:center;
       background: radial-gradient(240px 120px at 30% 20%, rgba(255,36,0,.18), transparent 60%), rgba(255,255,255,.02);
+      padding:14px; margin-top:12px;
     }
     #qrisImg{
-      width: 200px;   /* KECIL FIX */
-      height: 200px;  /* KECIL FIX */
+      width: 180px;
+      height: 180px;
       object-fit: contain;
       border-radius: 12px;
       display:block;
@@ -250,15 +243,68 @@
       max-width:min(560px, 92vw);
     }
 
+    /* SOSMED SECTION */
+    .social-wrap{
+      max-width:1100px;
+      margin: 18px auto 0;
+      padding: 0 18px 36px;
+    }
+    .social{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      padding:18px;
+    }
+    .social h3{margin:0 0 8px}
+    .social .row{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .social .item{
+      grid-column: span 4;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+      background: rgba(18,18,26,.55);
+      min-width: 0;
+    }
+    .social .label{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+    }
+    .social .value{
+      margin-top:6px;
+      font-weight:900;
+      letter-spacing:.2px;
+      word-break: break-word;
+    }
+    .social a{
+      color: var(--text);
+      text-decoration: none;
+    }
+    .social a:hover{ text-decoration: underline; }
+    .social .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
     @media (max-width: 900px){
       h1{font-size:36px}
       .hero{grid-column: 1 / -1}
       .stats{grid-column: 1 / -1; flex-direction:row; flex-wrap:wrap}
       .product{grid-column: span 12}
       .pay-left,.pay-right{grid-column: span 12}
+      .social .item{grid-column: span 12;}
     }
   </style>
 </head>
+
 <body>
 
   <div class="topbar">
@@ -571,7 +617,46 @@
 
   </div>
 
-  <!-- QRIS Modal (FIX & KECIL) -->
+  <!-- SOSIAL MEDIA (di bawah semua halaman) -->
+  <div class="social-wrap">
+    <div class="social">
+      <h3>Info Media Sosial</h3>
+      <p class="muted">Hubungi & ikuti NORS STORE lewat kanal berikut:</p>
+
+      <div class="row">
+        <div class="item">
+          <div class="label">WhatsApp</div>
+          <div class="value">
+            <a href="https://wa.me/6285700382972" target="_blank" rel="noopener noreferrer">085700382972</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="label">Instagram</div>
+          <div class="value">
+            <a href="https://instagram.com/norsstoree" target="_blank" rel="noopener noreferrer">@norsstoree</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="label">Grup WhatsApp</div>
+          <div class="value">
+            <a href="https://chat.whatsapp.com/Gky5UD6XqymCBv2sgtFg7G" target="_blank" rel="noopener noreferrer">
+              Join Grup WA
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary btn-small" href="https://wa.me/6285700382972" target="_blank" rel="noopener noreferrer">Chat WhatsApp</a>
+        <a class="btn btn-ghost btn-small" href="https://instagram.com/norsstoree" target="_blank" rel="noopener noreferrer">Buka Instagram</a>
+        <a class="btn btn-wa btn-small" href="https://chat.whatsapp.com/Gky5UD6XqymCBv2sgtFg7G" target="_blank" rel="noopener noreferrer">Join Grup WA</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- QRIS Modal -->
   <div class="modal" id="modal">
     <div class="modal-card">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
@@ -639,11 +724,8 @@
 
     // ====== QRIS MODAL ======
     const modal = document.getElementById("modal");
-    const openQrisBtn = document.getElementById("openQris");
-    const closeQrisBtn = document.getElementById("closeQris");
-
-    openQrisBtn.addEventListener("click", () => modal.classList.add("show"));
-    closeQrisBtn.addEventListener("click", () => modal.classList.remove("show"));
+    document.getElementById("openQris").addEventListener("click", () => modal.classList.add("show"));
+    document.getElementById("closeQris").addEventListener("click", () => modal.classList.remove("show"));
     modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("show"); });
 
     // ====== FORM MESSAGE + WHATSAPP ======
