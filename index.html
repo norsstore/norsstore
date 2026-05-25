@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NORS STORE — Premium Apps</title>
+  <title>NORS STORE — Premium Apps & Kuota</title>
 
   <style>
     :root{
       --blue:#2563EB;
       --blue2:#60A5FA;
-      --blue3:#93C5FD;
       --bg:#F7FBFF;
       --card:#FFFFFF;
       --card2:#F1F7FF;
@@ -28,7 +27,6 @@
       background:
         radial-gradient(900px 420px at 15% 0%, rgba(96,165,250,.35), transparent 60%),
         radial-gradient(900px 420px at 85% 0%, rgba(147,197,253,.30), transparent 55%),
-        radial-gradient(900px 420px at 50% 110%, rgba(37,99,235,.10), transparent 60%),
         var(--bg);
       color:var(--text);
       overflow-x:hidden;
@@ -39,12 +37,12 @@
       top:0;
       z-index:50;
       backdrop-filter:blur(10px);
-      background:rgba(255,255,255,.72);
+      background:rgba(255,255,255,.76);
       border-bottom:1px solid var(--line);
     }
 
     .topbar-inner{
-      max-width:1100px;
+      max-width:1120px;
       margin:0 auto;
       padding:14px 18px;
       display:flex;
@@ -68,7 +66,6 @@
       border-radius:12px;
       object-fit:cover;
       border:1px solid rgba(15,23,42,.10);
-      box-shadow:0 10px 24px rgba(2,6,23,.10);
       background:#fff;
     }
 
@@ -90,7 +87,7 @@
     .nav button{
       cursor:pointer;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.70);
+      background:rgba(255,255,255,.74);
       color:var(--muted);
       padding:8px 12px;
       border-radius:999px;
@@ -100,28 +97,26 @@
     }
 
     .nav button.active{
-      border-color:rgba(37,99,235,.35);
       color:var(--text);
+      border-color:rgba(37,99,235,.35);
       box-shadow:0 0 0 3px rgba(37,99,235,.10);
       background:rgba(96,165,250,.12);
     }
 
-    .nav button:hover{transform:translateY(-1px)}
-
     .wrap{
-      max-width:1100px;
+      max-width:1120px;
       margin:0 auto;
       padding:22px 18px 36px;
     }
 
     .page{
       display:none;
+      min-height:78vh;
+      padding:26px;
       border:1px solid var(--line);
       border-radius:22px;
-      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(241,247,255,.85));
+      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(241,247,255,.86));
       box-shadow:var(--shadow);
-      padding:26px;
-      min-height:78vh;
       animation:fade .25s ease;
     }
 
@@ -131,6 +126,13 @@
       from{opacity:.6; transform:translateY(6px)}
       to{opacity:1; transform:none}
     }
+
+    h1,h2,h3{margin:10px 0}
+    h1{font-size:44px; line-height:1.05}
+    h2{font-size:28px}
+    p{line-height:1.65; margin:0 0 12px}
+
+    .muted{color:var(--muted)}
 
     .badge{
       display:inline-flex;
@@ -153,25 +155,56 @@
       box-shadow:var(--glow);
     }
 
-    .muted{color:var(--muted)}
-    h1,h2,h3{margin:10px 0 10px}
-    h1{font-size:44px; line-height:1.05}
-    h2{font-size:28px}
-    p{line-height:1.65; margin:0 0 12px}
-
     .grid{
       display:grid;
       grid-template-columns:repeat(12, 1fr);
       gap:16px;
-      align-items:stretch;
     }
 
+    .hero{
+      grid-column:1 / span 8;
+      padding:22px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:
+        radial-gradient(520px 260px at 20% 0%, rgba(96,165,250,.35), transparent 60%),
+        rgba(255,255,255,.82);
+      box-shadow:0 18px 60px rgba(2,6,23,.08);
+    }
+
+    .stats{
+      grid-column:9 / span 4;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .stat,
     .card{
-      background:rgba(255,255,255,.88);
       border:1px solid var(--line);
       border-radius:18px;
-      padding:18px;
-      box-shadow:0 14px 40px rgba(2,6,23,.08);
+      padding:16px;
+      background:rgba(255,255,255,.84);
+      box-shadow:0 14px 40px rgba(2,6,23,.06);
+    }
+
+    .stat .n{font-size:18px; font-weight:900}
+
+    .hotlist{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .chip{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(37,99,235,.14);
+      color:#0B1B3A;
+      background:rgba(96,165,250,.10);
+      font-weight:900;
     }
 
     .btnrow{
@@ -202,23 +235,10 @@
       box-shadow:0 14px 28px rgba(37,99,235,.18);
     }
 
-    .btn-primary:hover{transform:translateY(-1px)}
-
     .btn-ghost{
-      background:rgba(255,255,255,.72);
+      background:rgba(255,255,255,.74);
       border:1px solid var(--line);
       color:var(--text);
-    }
-
-    .btn-ghost:hover{
-      transform:translateY(-1px);
-      border-color:rgba(37,99,235,.25);
-    }
-
-    .btn-small{
-      padding:10px 12px;
-      border-radius:12px;
-      font-size:13px;
     }
 
     .btn-wa{
@@ -227,75 +247,8 @@
       color:var(--text);
     }
 
-    .btn-wa:hover{
-      transform:translateY(-1px);
-      box-shadow:0 0 0 3px rgba(37,99,235,.10);
-    }
-
-    .hero{
-      grid-column:1 / span 8;
-      padding:22px;
-      border-radius:22px;
-      border:1px solid var(--line);
-      background:
-        radial-gradient(520px 260px at 20% 0%, rgba(96,165,250,.35), transparent 60%),
-        radial-gradient(520px 260px at 85% 30%, rgba(147,197,253,.25), transparent 60%),
-        rgba(255,255,255,.80);
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 18px 60px rgba(2,6,23,.08);
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:-40px;
-      background:radial-gradient(320px 240px at 70% 40%, rgba(37,99,235,.12), transparent 65%);
-      filter:blur(6px);
-      pointer-events:none;
-    }
-
-    .hero > *{
-      position:relative;
-      z-index:2;
-    }
-
-    .stats{
-      grid-column:9 / span 4;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-
-    .stat{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:16px;
-      background:rgba(255,255,255,.80);
-      box-shadow:0 14px 40px rgba(2,6,23,.06);
-    }
-
-    .stat .n{
-      font-size:18px;
-      font-weight:900;
-    }
-
-    .hotlist{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .chip{
-      font-size:12px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(37,99,235,.14);
-      color:#0B1B3A;
-      background:rgba(96,165,250,.10);
-      font-weight:900;
-    }
+    .btn-small{padding:10px 12px; border-radius:12px; font-size:13px}
+    .btn:hover{transform:translateY(-1px)}
 
     .toolbar{
       display:flex;
@@ -303,8 +256,7 @@
       gap:12px;
       flex-wrap:wrap;
       align-items:flex-start;
-      margin-top:6px;
-      margin-bottom:12px;
+      margin:6px 0 12px;
     }
 
     .search{
@@ -313,7 +265,7 @@
       display:flex;
       gap:10px;
       align-items:center;
-      padding:12px 12px;
+      padding:12px;
       border-radius:14px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.75);
@@ -334,7 +286,8 @@
       gap:14px;
     }
 
-    .product{
+    .product,
+    .quota-card{
       grid-column:span 6;
       border-radius:18px;
       padding:16px;
@@ -345,19 +298,23 @@
       box-shadow:0 16px 44px rgba(2,6,23,.07);
     }
 
-    .phead{
+    .phead,
+    .quota-head{
       display:flex;
       justify-content:space-between;
       gap:10px;
       align-items:flex-start;
     }
 
-    .pname{
+    .pname,
+    .quota-title{
       font-weight:900;
       font-size:16px;
+      line-height:1.35;
     }
 
-    .tag{
+    .tag,
+    .quota-price{
       font-size:11px;
       font-weight:900;
       background:linear-gradient(180deg, var(--blue2), var(--blue));
@@ -367,8 +324,8 @@
       white-space:nowrap;
     }
 
-    /* ===== REVISI PRICE LIST BIAR RAPI ===== */
-    .price-list{
+    .price-list,
+    .area-list{
       margin-top:12px;
       display:flex;
       flex-direction:column;
@@ -379,15 +336,15 @@
       display:grid;
       grid-template-columns:150px 1fr;
       gap:12px;
-      align-items:center;
+      align-items:start;
       padding:10px 12px;
       border:1px solid rgba(15,23,42,.09);
       border-radius:14px;
       background:rgba(255,255,255,.78);
-      box-shadow:0 8px 22px rgba(2,6,23,.04);
     }
 
     .price-title{
+      padding-top:7px;
       font-size:13px;
       font-weight:900;
       color:#0F172A;
@@ -407,7 +364,6 @@
       display:flex;
       align-items:center;
       width:100%;
-      white-space:normal;
       padding:7px 10px;
       border-radius:12px;
       border:1px solid rgba(37,99,235,.14);
@@ -423,6 +379,51 @@
       padding-left:2px;
       font-size:13px;
       color:var(--muted);
+    }
+
+    .area-row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      padding:9px 10px;
+      border-radius:12px;
+      border:1px solid rgba(37,99,235,.12);
+      background:rgba(255,255,255,.72);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .area-gb{color:var(--muted); text-align:right}
+
+    .quota-banner{
+      border:1px solid rgba(37,99,235,.16);
+      border-radius:18px;
+      background:rgba(96,165,250,.11);
+      padding:14px;
+      margin:12px 0 14px;
+      font-weight:900;
+      color:#0B1B3A;
+      line-height:1.6;
+    }
+
+    .divider-title{
+      grid-column:1 / -1;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:4px 0;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .divider-title::before,
+    .divider-title::after{
+      content:"";
+      flex:1;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(37,99,235,.22), transparent);
     }
 
     .note{
@@ -445,7 +446,7 @@
       gap:14px;
     }
 
-    .pay-left{grid-column:span 6}
+    .pay-left,
     .pay-right{grid-column:span 6}
 
     .paymethod{
@@ -456,45 +457,16 @@
       border-radius:18px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.80);
-      box-shadow:0 14px 40px rgba(2,6,23,.06);
     }
 
     .pm-title{font-weight:900}
+    .pm-sub{margin-top:6px; font-size:13px; color:var(--muted); line-height:1.6}
 
-    .pm-sub{
-      margin-top:6px;
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .codebox{
-      margin-top:10px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .mono{
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(241,247,255,.90);
-      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:13px;
-      color:#0B1B3A;
-    }
-
-    label{
-      font-size:12px;
-      color:var(--muted);
-      font-weight:900;
-    }
+    label{font-size:12px; color:var(--muted); font-weight:900}
 
     .field{
       margin-top:8px;
-      padding:12px 12px;
+      padding:12px;
       border-radius:14px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.85);
@@ -503,10 +475,7 @@
       outline:none;
     }
 
-    textarea.field{
-      min-height:92px;
-      resize:vertical;
-    }
+    textarea.field{min-height:92px; resize:vertical}
 
     .preview{
       margin-top:12px;
@@ -582,7 +551,7 @@
     }
 
     .social-wrap{
-      max-width:1100px;
+      max-width:1120px;
       margin:18px auto 0;
       padding:0 18px 36px;
     }
@@ -594,8 +563,6 @@
       box-shadow:var(--shadow);
       padding:18px;
     }
-
-    .social h3{margin:0 0 8px}
 
     .social .row{
       display:grid;
@@ -613,32 +580,11 @@
       min-width:0;
     }
 
-    .social .label{
-      font-size:12px;
-      color:var(--muted);
-      font-weight:900;
-    }
-
-    .social .value{
-      margin-top:6px;
-      font-weight:900;
-      letter-spacing:.2px;
-      word-break:break-word;
-    }
-
-    .social a{
-      color:var(--text);
-      text-decoration:none;
-    }
-
+    .social .label{font-size:12px; color:var(--muted); font-weight:900}
+    .social .value{margin-top:6px; font-weight:900; word-break:break-word}
+    .social a{color:var(--text); text-decoration:none}
     .social a:hover{text-decoration:underline}
-
-    .social .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
+    .social .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
 
     .float-order{
       position:fixed;
@@ -653,12 +599,8 @@
     @media (max-width:900px){
       h1{font-size:36px}
       .hero{grid-column:1 / -1}
-      .stats{
-        grid-column:1 / -1;
-        flex-direction:row;
-        flex-wrap:wrap;
-      }
-      .product{grid-column:span 12}
+      .stats{grid-column:1 / -1; flex-direction:row; flex-wrap:wrap}
+      .product,.quota-card{grid-column:span 12}
       .pay-left,.pay-right{grid-column:span 12}
       .social .item{grid-column:span 12}
     }
@@ -667,22 +609,10 @@
       .page{padding:18px}
       .topbar-inner{align-items:flex-start; flex-direction:column}
       .nav{justify-content:flex-start}
-      .price-row{
-        grid-template-columns:1fr;
-        gap:7px;
-      }
-      .price-detail{
-        gap:5px;
-      }
-      .price-pill{
-        white-space:normal;
-      }
-      .float-order{
-        right:12px;
-        bottom:12px;
-        padding:11px 13px;
-        font-size:13px;
-      }
+      .price-row{grid-template-columns:1fr; gap:7px}
+      .price-title{padding-top:0}
+      .quota-head{flex-direction:column}
+      .float-order{right:12px; bottom:12px; padding:11px 13px; font-size:13px}
     }
   </style>
 </head>
@@ -698,7 +628,8 @@
 
       <div class="nav">
         <button class="active" data-page="home">Beranda</button>
-        <button data-page="pricelist">Pricelist</button>
+        <button data-page="premium">Aplikasi Premium</button>
+        <button data-page="kuota">Kuota</button>
         <button data-page="payment">Pembayaran</button>
       </div>
     </div>
@@ -710,539 +641,83 @@
     <section class="page active" id="home">
       <div class="grid">
         <div class="hero">
-          <span class="badge"><span class="spark"></span> Premium Apps • Harga Hemat • Fast Response</span>
+          <span class="badge"><span class="spark"></span> Premium Apps • Kuota XL Axis • Fast Response</span>
           <h1>Selamat datang di<br /><span style="color:var(--blue); text-shadow:var(--glow);">NORS STORE</span></h1>
-          <p class="muted">Pilih aplikasi premium favoritmu, cek harga, lalu lanjut ke pembayaran.</p>
+          <p class="muted">Pilih kebutuhanmu: aplikasi premium atau paket kuota. Cek pricelist, lalu lanjut pembayaran via QRIS.</p>
 
           <div class="hotlist">
-            <span class="chip">CANVA</span>
-            <span class="chip">CAPCUT</span>
-            <span class="chip">CHATGPT</span>
-            <span class="chip">GETCONTACT</span>
-            <span class="chip">HBO</span>
-            <span class="chip">NETFLIX</span>
-            <span class="chip">PERPLEXITY</span>
-            <span class="chip">PRIME</span>
-            <span class="chip">SPOTIFY</span>
-            <span class="chip">VIDIO</span>
-            <span class="chip">VIU</span>
-            <span class="chip">WETV</span>
-            <span class="chip">YOUTUBE</span>
-            <span class="chip">ZOOM</span>
+            <span class="chip">APLIKASI PREMIUM</span>
+            <span class="chip">KUOTA XL AXIS</span>
+            <span class="chip">LEGAL</span>
+            <span class="chip">BERGARANSI</span>
+            <span class="chip">QRIS ONLY</span>
           </div>
 
           <div class="btnrow">
-            <button class="btn btn-primary" data-pagego="pricelist">Lihat Pricelist →</button>
-            <button class="btn btn-primary" data-pagego="payment">🛒 Order Sekarang</button>
+            <button class="btn btn-primary" data-pagego="premium">Lihat Aplikasi Premium →</button>
+            <button class="btn btn-primary" data-pagego="kuota">Lihat Kuota →</button>
             <button class="btn btn-ghost" id="btnHelp">Cara Order ?</button>
           </div>
 
-          <p class="muted" style="margin-top:10px;font-size:12px;">*Beberapa paket perlu tanya stok terlebih dahulu.</p>
+          <p class="muted" style="margin-top:10px;font-size:12px;">*Tanyakan stok terlebih dahulu sebelum membeli.</p>
         </div>
 
         <div class="stats">
-          <div class="stat">
-            <div class="n">⚡ Proses Cepat</div>
-            <div class="muted" style="margin-top:6px;">Setelah pembayaran, pesanan langsung diproses.</div>
-          </div>
-          <div class="stat">
-            <div class="n">🛡️ Garansi</div>
-            <div class="muted" style="margin-top:6px;">Tersedia paket full garansi sesuai ketentuan.</div>
-          </div>
-          <div class="stat">
-            <div class="n">✅ Banyak Pilihan</div>
-            <div class="muted" style="margin-top:6px;">Invite / Sharing / Private, tergantung produk.</div>
-          </div>
+          <div class="stat"><div class="n">📱 Aplikasi Premium</div><div class="muted" style="margin-top:6px;">Canva, Capcut, ChatGPT, Netflix, YouTube, dan lainnya.</div></div>
+          <div class="stat"><div class="n">📶 Kuota XL Axis</div><div class="muted" style="margin-top:6px;">Paket legal bergaransi 28–30 hari.</div></div>
+          <div class="stat"><div class="n">📲 QRIS Only</div><div class="muted" style="margin-top:6px;">Pembayaran dibuat simpel hanya melalui QRIS.</div></div>
         </div>
       </div>
     </section>
 
-    <section class="page" id="pricelist">
-      <span class="badge"><span class="spark"></span> Pricelist Premium Apps</span>
-      <h2>Daftar Aplikasi & Harga</h2>
-      <p class="muted">Cari nama aplikasi untuk memfilter daftar. Bagian harga sudah direvisi jadi rapi: satu jenis paket satu baris.</p>
+    <section class="page" id="premium">
+      <span class="badge"><span class="spark"></span> Pricelist Aplikasi Premium</span>
+      <h2>Daftar Aplikasi Premium & Harga</h2>
+      <p class="muted">Harga dibuat turun per baris agar rapi dan mudah dibaca.</p>
 
       <div class="toolbar">
-        <div class="search">
-          <b style="color:var(--muted);">🔎</b>
-          <input id="search" placeholder="Cari: canva / netflix / youtube / zoom ..." />
-        </div>
-
-        <div class="btnrow" style="margin-top:0;">
-          <button class="btn btn-ghost btn-small" data-pagego="home">← Beranda</button>
-          <button class="btn btn-primary btn-small" data-pagego="payment">🛒 Order Sekarang</button>
-        </div>
+        <div class="search"><b style="color:var(--muted);">🔎</b><input id="searchPremium" placeholder="Cari aplikasi: canva / netflix / youtube / zoom ..." /></div>
+        <div class="btnrow" style="margin-top:0;"><button class="btn btn-ghost btn-small" data-pagego="home">← Beranda</button><button class="btn btn-primary btn-small" data-pagego="kuota">Lihat Kuota</button><button class="btn btn-primary btn-small" data-pagego="payment">🛒 Order</button></div>
       </div>
 
-      <div class="products" id="productList">
-        <article class="product" data-name="canva" data-order="CANVA PREMIUM - pilih paket: Invite / Owner / 1 Tahun">
-          <div class="phead">
-            <div>
-              <div class="pname">CANVA PREMIUM</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Invite / Owner / 1 Tahun</div>
-            </div>
-            <div class="tag">Best</div>
-          </div>
+      <div class="products" id="premiumList"></div>
+    </section>
 
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Via Invite</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan Rp 3.000</span>
-                <span class="price-pill">2 Bulan Rp 5.000</span>
-                <span class="price-pill">3 Bulan Rp 7.000</span>
-                <span class="price-text">Full Garansi</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Owner</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan Rp 10.000</span>
-                <span class="price-pill">2 Bulan Rp 15.000</span>
-                <span class="price-text">Full Garansi</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Lifetime</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Tahun Rp 25.000</span>
-                <span class="price-text">Garansi 6 Bulan</span>
-              </div>
-            </div>
-          </div>
+    <section class="page" id="kuota">
+      <span class="badge"><span class="spark"></span> Pricelist Kuota</span>
+      <h2>Paket XL Axis Legal Bergaransi</h2>
+      <p class="muted">Ready paket XL Axis legal bergaransi 28–30 hari. Pilih paket, lalu klik order.</p>
 
-          <div class="note">Tanyakan stok terlebih dahulu.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="capcut" data-order="CAPCUT PRO - pilih paket: Private / Sharing">
-          <div class="phead">
-            <div>
-              <div class="pname">CAPCUT PRO</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div>
-            </div>
-            <div class="tag">Hot</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Private</div>
-              <div class="price-detail">
-                <span class="price-pill">7 Hari Rp 10.000</span>
-                <span class="price-pill">1 Bulan Rp 22.000</span>
-                <span class="price-text">27–35 hari</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Sharing</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan Rp 12.000</span>
-                <span class="price-text">Maks 1 device</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Private: garansi • email seller • bisa 4 device.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="chatgpt gpt chat gpt" data-order="CHATGPT PRO - pilih paket: Invite / Sharing / Private">
-          <div class="phead">
-            <div>
-              <div class="pname">CHATGPT PRO</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Invite / Sharing / Private</div>
-            </div>
-            <div class="tag">AI</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Invite</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan Rp 25.000</span>
-                <span class="price-text">Email buyer</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Sharing</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan Rp 25.000</span>
-                <span class="price-text">Email seller</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Private</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan Rp 40.000</span>
-                <span class="price-text">Gmail belum pernah premium</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Private Seller</div>
-              <div class="price-detail">
-                <span class="price-pill">Rp 50.000</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Invite cukup email tanpa sandi, privasi aman.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="hbo" data-order="HBO - pilih paket: Private / Sharing">
-          <div class="phead">
-            <div>
-              <div class="pname">HBO</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div>
-            </div>
-            <div class="tag">Stream</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Private</div>
-              <div class="price-detail"><span class="price-pill">1 Bulan Rp 100.000</span></div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Sharing</div>
-              <div class="price-detail"><span class="price-pill">1 Bulan Rp 20.000</span></div>
-            </div>
-          </div>
-
-          <div class="note">Tanyakan ketentuan login sebelum order.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="netflix" data-order="NETFLIX 4K + UHD - pilih paket: 1P1U / 1P2U / Harian / Private">
-          <div class="phead">
-            <div>
-              <div class="pname">NETFLIX 4K + UHD</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">1P1U / 1P2U / Harian / Private</div>
-            </div>
-            <div class="tag">4K</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">1P1U</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan 26k</span>
-                <span class="price-pill">2 Bulan 52k</span>
-                <span class="price-pill">3 Bulan 75k</span>
-                <span class="price-text">Private profil • Full garansi</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">1P2U</div>
-              <div class="price-detail"><span class="price-pill">1 Bulan 20k</span></div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Harian</div>
-              <div class="price-detail">
-                <span class="price-pill">2 Hari 5k</span>
-                <span class="price-text">Private profil</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Private Akun</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan 130k</span>
-                <span class="price-text">5 profil • Full garansi</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Pilih paket sesuai profil/user.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="perplexity" data-order="PERPLEXITY PRO - pilih paket: Private / Sharing">
-          <div class="phead">
-            <div>
-              <div class="pname">PERPLEXITY PRO</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div>
-            </div>
-            <div class="tag">AI</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Private</div>
-              <div class="price-detail"><span class="price-pill">1 Bulan Rp 25.000</span></div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Sharing</div>
-              <div class="price-detail"><span class="price-pill">1 Bulan Rp 12.000</span></div>
-            </div>
-          </div>
-
-          <div class="note">Akun dari seller.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="prime prime video" data-order="PRIME VIDEO - pilih paket: Private / Indplan">
-          <div class="phead">
-            <div>
-              <div class="pname">PRIME VIDEO</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Private / Indplan</div>
-            </div>
-            <div class="tag">Stream</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Private</div>
-              <div class="price-detail"><span class="price-pill">1 Bulan Rp 15.000</span></div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Indplan Seller</div>
-              <div class="price-detail"><span class="price-pill">3 Bulan Rp 38.000</span></div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Indplan Buyer</div>
-              <div class="price-detail">
-                <span class="price-pill">4 Bulan Rp 30.000</span>
-                <span class="price-text">Akun belum pernah premium • Akun lama bisa</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Pastikan akun memenuhi syarat untuk Indplan buyer.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="vidio" data-order="VIDIO.COM - pilih paket: Platinum / Extra / Ultimate">
-          <div class="phead">
-            <div>
-              <div class="pname">VIDIO.COM</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Platinum / Extra / Ultimate</div>
-            </div>
-            <div class="tag">Local</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Platinum</div>
-              <div class="price-detail">
-                <span class="price-pill">All 34k</span>
-                <span class="price-pill">Mobile 24k</span>
-                <span class="price-pill">TV 10k</span>
-                <span class="price-pill">3 Bulan TV 20k</span>
-                <span class="price-pill">1 Tahun TV 35k</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Extra</div>
-              <div class="price-detail"><span class="price-pill">All 60k</span></div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Ultimate</div>
-              <div class="price-detail">
-                <span class="price-pill">All 140k</span>
-                <span class="price-pill">Mobile 75k</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Pilih sesuai device.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="viu" data-order="VIU - pilih durasi">
-          <div class="phead">
-            <div>
-              <div class="pname">VIU</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Durasi fleksibel</div>
-            </div>
-            <div class="tag">Hemat</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Durasi</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan 5k</span>
-                <span class="price-pill">3 Bulan 10k</span>
-                <span class="price-pill">6 Bulan 13k</span>
-                <span class="price-pill">1 Tahun 25k</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Tanyakan stok sebelum order.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="youtube" data-order="YOUTUBE PREMIUM - pilih paket: Indplan / Mixplan / Invite">
-          <div class="phead">
-            <div>
-              <div class="pname">YOUTUBE PREMIUM</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Indplan / Mixplan / Invite</div>
-            </div>
-            <div class="tag">Music+</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Indplan</div>
-              <div class="price-detail">
-                <span class="price-pill">30 Hari 10k</span>
-                <span class="price-pill">44 Hari 13k</span>
-                <span class="price-pill">3 Bulan 20k</span>
-                <span class="price-text">No garansi</span>
-                <span class="price-pill">3 Bulan 35k</span>
-                <span class="price-text">Garansi</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Mixplan</div>
-              <div class="price-detail">
-                <span class="price-pill">3 Bulan 20k</span>
-                <span class="price-text">1 bulan seller • 2 bulan invite</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Invite</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan 6k</span>
-                <span class="price-pill">2 Bulan 10k</span>
-                <span class="price-pill">3 Bulan 15k</span>
-                <span class="price-text">Email buyer</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Tanyakan stok terlebih dahulu.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="wetv we tv" data-order="WETV - pilih paket: Private / Sharing">
-          <div class="phead">
-            <div>
-              <div class="pname">WETV</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Private / Sharing</div>
-            </div>
-            <div class="tag">Drama</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Private</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan Rp 29.000</span>
-                <span class="price-text">3 device</span>
-              </div>
-            </div>
-            <div class="price-row">
-              <div class="price-title">Sharing</div>
-              <div class="price-detail">
-                <span class="price-pill">1 Bulan Rp 15.000</span>
-                <span class="price-text">1 device</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Pilih sesuai kebutuhan device.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="zoom" data-order="ZOOM PREMIUM - 14 Hari Rp 12.000">
-          <div class="phead">
-            <div>
-              <div class="pname">ZOOM PREMIUM</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Akun privat</div>
-            </div>
-            <div class="tag">Meet</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Premium</div>
-              <div class="price-detail">
-                <span class="price-pill">14 Hari Rp 12.000</span>
-                <span class="price-text">Unlimited waktu • Maks 100 peserta</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">Tanyakan kebutuhan meeting sebelum order.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="getcontact" data-order="GETCONTACT - tanya harga & stok">
-          <div class="phead">
-            <div>
-              <div class="pname">GETCONTACT</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Stok kosong</div>
-            </div>
-            <div class="tag">Info</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Info</div>
-              <div class="price-detail"><span class="price-pill">Tanyakan stok & harga</span></div>
-            </div>
-          </div>
-
-          <div class="note">Ditunggu ya harga terbarunya.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
-
-        <article class="product" data-name="spotify" data-order="SPOTIFY - tanya harga & stok">
-          <div class="phead">
-            <div>
-              <div class="pname">SPOTIFY</div>
-              <div class="muted" style="font-size:12px;margin-top:4px;">Stok kosong</div>
-            </div>
-            <div class="tag">Info</div>
-          </div>
-
-          <div class="price-list">
-            <div class="price-row">
-              <div class="price-title">Info</div>
-              <div class="price-detail"><span class="price-pill">Tanyakan stok & harga</span></div>
-            </div>
-          </div>
-
-          <div class="note">Ditunggu ya harga terbarunya.</div>
-          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
-        </article>
+      <div class="quota-banner">
+        ✅ = Stok Ready &nbsp; • &nbsp; ❌ = Stok habis/kosong<br />
+        ✍️ Tanyakan stok terlebih dahulu sebelum membeli.
       </div>
 
-      <div class="btnrow" style="justify-content:space-between; margin-top:16px;">
-        <button class="btn btn-ghost" data-pagego="home">← Kembali</button>
-        <button class="btn btn-primary" data-pagego="payment">🛒 Order Sekarang →</button>
+      <div class="toolbar">
+        <div class="search"><b style="color:var(--muted);">🔎</b><input id="searchKuota" placeholder="Cari kuota: XXL / XL / L / KUB / KUBER / LOKAL ..." /></div>
+        <div class="btnrow" style="margin-top:0;"><button class="btn btn-ghost btn-small" data-pagego="home">← Beranda</button><button class="btn btn-primary btn-small" data-pagego="premium">Aplikasi Premium</button><button class="btn btn-primary btn-small" data-pagego="payment">🛒 Order</button></div>
       </div>
+
+      <div class="products" id="quotaList"></div>
     </section>
 
     <section class="page" id="payment">
       <span class="badge"><span class="spark"></span> Pembayaran</span>
       <h2>Metode Pembayaran QRIS</h2>
-      <p class="muted">Pembayaran sekarang hanya menggunakan QRIS. Setelah bayar, kirim bukti + detail pesanan ke WhatsApp admin.</p>
+      <p class="muted">Pembayaran hanya menggunakan QRIS. Setelah bayar, kirim bukti + detail pesanan ke WhatsApp admin.</p>
 
-      <div class="btnrow" style="margin-top:8px;">
-        <button class="btn btn-primary" id="goWaNow">🛒 ORDER SEKARANG (Chat Admin)</button>
-      </div>
+      <div class="btnrow" style="margin-top:8px;"><button class="btn btn-primary" id="goWaNow">🛒 ORDER SEKARANG (Chat Admin)</button></div>
 
       <div class="paygrid" style="margin-top:12px;">
         <div class="pay-left card">
           <div class="paymethod">
-            <div>
-              <div class="pm-title">📲 QRIS</div>
-              <div class="pm-sub">Scan QRIS untuk melakukan pembayaran. Setelah transfer, kirim bukti pembayaran ke admin.</div>
-            </div>
+            <div><div class="pm-title">📲 QRIS</div><div class="pm-sub">Scan QRIS untuk pembayaran. Setelah transfer, kirim bukti pembayaran ke admin.</div></div>
             <button class="btn btn-primary btn-small" id="openQris">Lihat QRIS</button>
           </div>
 
-          <div class="qrisbox">
-            <img src="QRIS.PNG" alt="QRIS NORS STORE" id="qrisImgPayment" />
-          </div>
+          <div class="qrisbox"><img src="QRIS.PNG" alt="QRIS NORS STORE" id="qrisImgPayment" /></div>
 
-          <div class="note" style="margin-top:12px;">
-            Metode pembayaran hanya QRIS.<br />
-            Nomor admin WhatsApp: <b>083879300243</b>
-          </div>
+          <div class="note" style="margin-top:12px;">Metode pembayaran hanya QRIS.<br />Nomor admin WhatsApp: <b>083879300243</b></div>
         </div>
 
         <div class="pay-right card">
@@ -1250,48 +725,22 @@
           <p class="muted">Klik “Buat Pesan”, lalu kamu bisa <b>Salin</b> atau langsung <b>Kirim ke WhatsApp</b>.</p>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;">
-            <div>
-              <label>Nama</label>
-              <input class="field" id="nama" placeholder="contoh: Liu" />
-            </div>
-            <div>
-              <label>Metode Bayar</label>
-              <select class="field" id="metode">
-                <option>QRIS</option>
-              </select>
-            </div>
+            <div><label>Nama</label><input class="field" id="nama" placeholder="contoh: Dhea" /></div>
+            <div><label>Metode Bayar</label><select class="field" id="metode"><option>QRIS</option></select></div>
           </div>
 
-          <div style="margin-top:12px;">
-            <label>Pesanan</label>
-            <textarea class="field" id="pesanan" placeholder="contoh: Netflix 1P1U 1 Bulan / Canva Invite 3 Bulan"></textarea>
-          </div>
+          <div style="margin-top:12px;"><label>Pesanan</label><textarea class="field" id="pesanan" placeholder="contoh: Netflix 1P1U 1 Bulan / Kuota XL LOKAL A1"></textarea></div>
+          <div style="margin-top:12px;"><label>Catatan (opsional)</label><input class="field" id="catatan" placeholder="contoh: email buyer / nomor XL / area A1-A4" /></div>
 
-          <div style="margin-top:12px;">
-            <label>Catatan (opsional)</label>
-            <input class="field" id="catatan" placeholder="contoh: email buyer: .... (tanpa sandi)" />
-          </div>
-
-          <div class="btnrow" style="justify-content:space-between;">
-            <button class="btn btn-ghost btn-small" data-pagego="pricelist">← Pricelist</button>
-            <button class="btn btn-primary btn-small" id="makeMsg">Buat Pesan</button>
-          </div>
-
+          <div class="btnrow" style="justify-content:space-between;"><button class="btn btn-ghost btn-small" data-pagego="home">← Beranda</button><button class="btn btn-primary btn-small" id="makeMsg">Buat Pesan</button></div>
           <div class="preview" id="preview">Isi form, lalu klik "Buat Pesan".</div>
 
-          <div class="btnrow" style="margin-top:12px;">
-            <button class="btn btn-ghost btn-small" id="copyMsg">Salin Pesan</button>
-            <button class="btn btn-wa btn-small" id="sendWa">Kirim ke WhatsApp</button>
-          </div>
-
+          <div class="btnrow" style="margin-top:12px;"><button class="btn btn-ghost btn-small" id="copyMsg">Salin Pesan</button><button class="btn btn-wa btn-small" id="sendWa">Kirim ke WhatsApp</button></div>
           <p class="muted" style="margin-top:10px; font-size:12px;">*Tombol WhatsApp akan membuka aplikasi WA/WhatsApp Web ke nomor admin dengan teks otomatis. Jangan lupa lampirkan bukti pembayaran QRIS.</p>
         </div>
       </div>
 
-      <div class="btnrow" style="justify-content:space-between; margin-top:16px;">
-        <button class="btn btn-ghost" data-pagego="pricelist">← Kembali</button>
-        <button class="btn btn-primary" onclick="toast('Siap! Tinggal kirim bukti pembayaran + detail pesanan ke WhatsApp admin.')">Selesai ✓</button>
-      </div>
+      <div class="btnrow" style="justify-content:space-between; margin-top:16px;"><button class="btn btn-ghost" data-pagego="home">← Kembali</button><button class="btn btn-primary" onclick="toast('Siap! Tinggal kirim bukti pembayaran QRIS + detail pesanan ke WhatsApp admin.')">Selesai ✓</button></div>
     </section>
   </div>
 
@@ -1299,30 +748,11 @@
     <div class="social">
       <h3>Info Media Sosial</h3>
       <p class="muted">Hubungi & ikuti NORS STORE lewat kanal berikut:</p>
-
       <div class="row">
-        <div class="item">
-          <div class="label">WhatsApp</div>
-          <div class="value">
-            <a href="https://wa.me/6283879300243" target="_blank" rel="noopener noreferrer">083879300243</a>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="label">Instagram</div>
-          <div class="value">
-            <a href="https://instagram.com/norsstoree" target="_blank" rel="noopener noreferrer">@norsstoree</a>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="label">Grup WhatsApp</div>
-          <div class="value">
-            <a href="https://chat.whatsapp.com/Gky5UD6XqymCBv2sgtFg7G" target="_blank" rel="noopener noreferrer">Join Grup WA</a>
-          </div>
-        </div>
+        <div class="item"><div class="label">WhatsApp</div><div class="value"><a href="https://wa.me/6283879300243" target="_blank" rel="noopener noreferrer">083879300243</a></div></div>
+        <div class="item"><div class="label">Instagram</div><div class="value"><a href="https://instagram.com/norsstoree" target="_blank" rel="noopener noreferrer">@norsstoree</a></div></div>
+        <div class="item"><div class="label">Grup WhatsApp</div><div class="value"><a href="https://chat.whatsapp.com/Gky5UD6XqymCBv2sgtFg7G" target="_blank" rel="noopener noreferrer">Join Grup WA</a></div></div>
       </div>
-
       <div class="actions">
         <a class="btn btn-primary btn-small" href="https://wa.me/6283879300243" target="_blank" rel="noopener noreferrer">Chat WhatsApp</a>
         <a class="btn btn-ghost btn-small" href="https://instagram.com/norsstoree" target="_blank" rel="noopener noreferrer">Buka Instagram</a>
@@ -1333,15 +763,8 @@
 
   <div class="modal" id="modal">
     <div class="modal-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
-        <div style="font-weight:900;">QRIS Payment</div>
-        <button class="btn btn-ghost btn-small" id="closeQris">Tutup</button>
-      </div>
-
-      <div class="qrisbox">
-        <img src="QRIS.PNG" alt="QRIS NORS STORE" id="qrisImg" />
-      </div>
-
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;"><div style="font-weight:900;">QRIS Payment</div><button class="btn btn-ghost btn-small" id="closeQris">Tutup</button></div>
+      <div class="qrisbox"><img src="QRIS.PNG" alt="QRIS NORS STORE" id="qrisImg" /></div>
       <p class="muted" style="margin-top:12px; font-size:12px;">Scan QRIS untuk pembayaran.</p>
     </div>
   </div>
@@ -1349,22 +772,106 @@
   <div id="toast"><span id="toastText"></span></div>
 
   <script>
-    const pages = ["home", "pricelist", "payment"];
+    const premiumData = [
+      {name:"CANVA PREMIUM", sub:"Invite / Owner / 1 Tahun", tag:"Best", keys:"canva", order:"CANVA PREMIUM - pilih paket: Invite / Owner / 1 Tahun", rows:[
+        ["Via Invite", ["1 Bulan Rp 3.000", "2 Bulan Rp 5.000", "3 Bulan Rp 7.000"], "Full Garansi"],
+        ["Owner", ["1 Bulan Rp 10.000", "2 Bulan Rp 15.000"], "Full Garansi"],
+        ["Lifetime", ["1 Tahun Rp 25.000"], "Garansi 6 Bulan"]], note:"Tanyakan stok terlebih dahulu."},
+      {name:"CAPCUT PRO", sub:"Private / Sharing", tag:"Hot", keys:"capcut", order:"CAPCUT PRO - pilih paket: Private / Sharing", rows:[
+        ["Private", ["7 Hari Rp 10.000", "1 Bulan Rp 22.000"], "27–35 hari"],
+        ["Sharing", ["1 Bulan Rp 12.000"], "Maks 1 device"]], note:"Private: garansi • email seller • bisa 4 device."},
+      {name:"CHATGPT PRO", sub:"Invite / Sharing / Private", tag:"AI", keys:"chatgpt gpt chat", order:"CHATGPT PRO - pilih paket: Invite / Sharing / Private", rows:[
+        ["Invite", ["1 Bulan Rp 25.000"], "Email buyer"],
+        ["Sharing", ["1 Bulan Rp 25.000"], "Email seller"],
+        ["Private", ["1 Bulan Rp 40.000"], "Gmail belum pernah premium"],
+        ["Private Seller", ["Rp 50.000"], ""]], note:"Invite cukup email tanpa sandi, privasi aman."},
+      {name:"HBO", sub:"Private / Sharing", tag:"Stream", keys:"hbo", order:"HBO - pilih paket: Private / Sharing", rows:[["Private", ["1 Bulan Rp 100.000"], ""], ["Sharing", ["1 Bulan Rp 20.000"], ""]], note:"Tanyakan ketentuan login sebelum order."},
+      {name:"NETFLIX 4K + UHD", sub:"1P1U / 1P2U / Harian / Private", tag:"4K", keys:"netflix", order:"NETFLIX 4K + UHD - pilih paket: 1P1U / 1P2U / Harian / Private", rows:[
+        ["1P1U", ["1 Bulan 26k", "2 Bulan 52k", "3 Bulan 75k"], "Private profil • Full garansi"],
+        ["1P2U", ["1 Bulan 20k"], ""],
+        ["Harian", ["2 Hari 5k"], "Private profil"],
+        ["Private Akun", ["1 Bulan 130k"], "5 profil • Full garansi"]], note:"Pilih paket sesuai profil/user."},
+      {name:"PERPLEXITY PRO", sub:"Private / Sharing", tag:"AI", keys:"perplexity", order:"PERPLEXITY PRO - pilih paket: Private / Sharing", rows:[["Private", ["1 Bulan Rp 25.000"], ""], ["Sharing", ["1 Bulan Rp 12.000"], ""]], note:"Akun dari seller."},
+      {name:"PRIME VIDEO", sub:"Private / Indplan", tag:"Stream", keys:"prime video", order:"PRIME VIDEO - pilih paket: Private / Indplan", rows:[["Private", ["1 Bulan Rp 15.000"], ""], ["Indplan Seller", ["3 Bulan Rp 38.000"], ""], ["Indplan Buyer", ["4 Bulan Rp 30.000"], "Akun belum pernah premium • Akun lama bisa"]], note:"Pastikan akun memenuhi syarat untuk Indplan buyer."},
+      {name:"VIDIO.COM", sub:"Platinum / Extra / Ultimate", tag:"Local", keys:"vidio", order:"VIDIO.COM - pilih paket: Platinum / Extra / Ultimate", rows:[["Platinum", ["All 34k", "Mobile 24k", "TV 10k", "3 Bulan TV 20k", "1 Tahun TV 35k"], ""], ["Extra", ["All 60k"], ""], ["Ultimate", ["All 140k", "Mobile 75k"], ""]], note:"Pilih sesuai device."},
+      {name:"VIU", sub:"Durasi fleksibel", tag:"Hemat", keys:"viu", order:"VIU - pilih durasi", rows:[["Durasi", ["1 Bulan 5k", "3 Bulan 10k", "6 Bulan 13k", "1 Tahun 25k"], ""]], note:"Tanyakan stok sebelum order."},
+      {name:"YOUTUBE PREMIUM", sub:"Indplan / Mixplan / Invite", tag:"Music+", keys:"youtube", order:"YOUTUBE PREMIUM - pilih paket: Indplan / Mixplan / Invite", rows:[["Indplan", ["30 Hari 10k", "44 Hari 13k", "3 Bulan 20k", "3 Bulan 35k"], "No garansi / Garansi sesuai paket"], ["Mixplan", ["3 Bulan 20k"], "1 bulan seller • 2 bulan invite"], ["Invite", ["1 Bulan 6k", "2 Bulan 10k", "3 Bulan 15k"], "Email buyer"]], note:"Tanyakan stok terlebih dahulu."},
+      {name:"WETV", sub:"Private / Sharing", tag:"Drama", keys:"wetv we tv", order:"WETV - pilih paket: Private / Sharing", rows:[["Private", ["1 Bulan Rp 29.000"], "3 device"], ["Sharing", ["1 Bulan Rp 15.000"], "1 device"]], note:"Pilih sesuai kebutuhan device."},
+      {name:"ZOOM PREMIUM", sub:"Akun privat", tag:"Meet", keys:"zoom", order:"ZOOM PREMIUM - 14 Hari Rp 12.000", rows:[["Premium", ["14 Hari Rp 12.000"], "Unlimited waktu • Maks 100 peserta"]], note:"Tanyakan kebutuhan meeting sebelum order."},
+      {name:"GETCONTACT", sub:"Stok kosong", tag:"Info", keys:"getcontact", order:"GETCONTACT - tanya harga & stok", rows:[["Info", ["Tanyakan stok & harga"], ""]], note:"Ditunggu ya harga terbarunya."},
+      {name:"SPOTIFY", sub:"Stok kosong", tag:"Info", keys:"spotify", order:"SPOTIFY - tanya harga & stok", rows:[["Info", ["Tanyakan stok & harga"], ""]], note:"Ditunggu ya harga terbarunya."}
+    ];
+
+    const quotaData = [
+      {name:"✅ XXL REW/JUMBO", price:"100K", keys:"xxl rew jumbo 100k", order:"KUOTA XXL REW/JUMBO 100K - pilih area A1/A2/A3/A4", areas:[["A1","65–67GB"],["A2","70–72GB"],["A3","83–85GB"],["A4","123–125GB"]]},
+      {name:"✅ XXL LOKAL", price:"87K", keys:"xxl lokal 87k", order:"KUOTA XXL LOKAL 87K - pilih area A1/A2/A3/A4", areas:[["A1","25–27GB"],["A2","30–32GB"],["A3","43–45GB"],["A4","83–85GB"]]},
+      {name:"✅ XXL KUB 20GB/LITE", price:"95K", keys:"xxl kub 20gb lite 95k", order:"KUOTA XXL KUB 20GB/LITE 95K - pilih area A1/A2/A3/A4", areas:[["A1","45–47GB"],["A2","50–52GB"],["A3","63–65GB"],["A4","103–105GB"]]},
+      {name:"✅ XXL KUBER 60GB", price:"115K", keys:"xxl kuber 60gb 115k", order:"KUOTA XXL KUBER 60GB 115K - pilih area A1/A2/A3/A4", areas:[["A1","85–87GB"],["A2","90–92GB"],["A3","103–105GB"],["A4","143–145GB"]]},
+      {divider:"PAKET XL"},
+      {name:"✅ XL REW/BIG", price:"82K", keys:"xl rew big 82k", order:"KUOTA XL REW/BIG 82K - pilih area A1/A2/A3/A4", areas:[["A1","33–36GB"],["A2","36–40GB"],["A3","47–50GB"],["A4","71–74GB"]]},
+      {name:"✅ XL LOKAL", price:"72K", keys:"xl lokal 72k", order:"KUOTA XL LOKAL 72K - pilih area A1/A2/A3/A4", areas:[["A1","13–16GB"],["A2","16–19GB"],["A3","27–30GB"],["A4","51–54GB"]]},
+      {divider:"PAKET L"},
+      {name:"✅ L LOKAL/SUPER MINI", price:"53K", keys:"l lokal super mini 53k", order:"KUOTA L LOKAL/SUPER MINI 53K - pilih area A1/A2/A3/A4", areas:[["A1","13–15GB"],["A2","15–17GB"],["A3","20–22GB"],["A4","30–32GB"]]},
+      {name:"✅ L OLD", price:"66K", keys:"l old 66k", order:"KUOTA L OLD 66K - pilih area A1/A2/A3/A4", areas:[["A1","31–33GB"],["A2","33–35GB"],["A3","38–40GB"],["A4","48–50GB"]]},
+      {name:"✅ L NEW", price:"72K", keys:"l new 72k", order:"KUOTA L NEW 72K - pilih area A1/A2/A3/A4", areas:[["A1","38–40GB"],["A2","40–42GB"],["A3","45–47GB"],["A4","55–57GB"]]},
+      {name:"✅ L KUB 34GB", price:"80K", keys:"l kub 34gb 80k", order:"KUOTA L KUB 34GB 80K - pilih area A1/A2/A3/A4", areas:[["A1","47–49GB"],["A2","49–51GB"],["A3","54–56GB"],["A4","64–66GB"]]},
+      {name:"✅ L KUB 50GB", price:"88K", keys:"l kub 50gb 88k", order:"KUOTA L KUB 50GB 88K - pilih area A1/A2/A3/A4", areas:[["A1","63–65GB"],["A2","65–67GB"],["A3","70–72GB"],["A4","80–82GB"]]},
+      {name:"✅ L KUB 55GB", price:"92K", keys:"l kub 55gb 92k", order:"KUOTA L KUB 55GB 92K - pilih area A1/A2/A3/A4", areas:[["A1","68–70GB"],["A2","70–72GB"],["A3","75–77GB"],["A4","85–87GB"]], note:"Catatan: data terakhir kamu tertulis A3 lagi, saya rapikan menjadi A4 agar urut."},
+      {name:"✅ L FULL KUBER", price:"102K", keys:"l full ful kuber 102k", order:"KUOTA L FULL KUBER 102K - pilih area A1/A2/A3/A4", areas:[["A1","88–90GB"],["A2","90–92GB"],["A3","95–97GB"],["A4","105–107GB"]]}
+    ];
+
+    function renderPremium(){
+      const list = document.getElementById("premiumList");
+      list.innerHTML = premiumData.map(item => `
+        <article class="product" data-name="${item.keys}" data-order="${item.order}">
+          <div class="phead"><div><div class="pname">${item.name}</div><div class="muted" style="font-size:12px;margin-top:4px;">${item.sub}</div></div><div class="tag">${item.tag}</div></div>
+          <div class="price-list">
+            ${item.rows.map(row => `
+              <div class="price-row">
+                <div class="price-title">${row[0]}</div>
+                <div class="price-detail">
+                  ${row[1].map(p => `<span class="price-pill">${p}</span>`).join("")}
+                  ${row[2] ? `<span class="price-text">${row[2]}</span>` : ""}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+          <div class="note">${item.note}</div>
+          <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
+        </article>
+      `).join("");
+    }
+
+    function renderQuota(){
+      const list = document.getElementById("quotaList");
+      list.innerHTML = quotaData.map(item => {
+        if(item.divider) return `<div class="divider-title">${item.divider}</div>`;
+        return `
+          <article class="quota-card" data-name="${item.keys}" data-order="${item.order}">
+            <div class="quota-head"><div class="quota-title">${item.name}</div><div class="quota-price">${item.price}</div></div>
+            <div class="area-list">
+              ${item.areas.map(a => `<div class="area-row"><span>${a[0]}</span><span class="area-gb">${a[1]}</span></div>`).join("")}
+            </div>
+            ${item.note ? `<div class="note">${item.note}</div>` : ""}
+            <div class="orderline"><button class="btn btn-primary btn-small orderBtn">🛒 Order</button></div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    renderPremium();
+    renderQuota();
+
+    const pages = ["home", "premium", "kuota", "payment"];
     const navButtons = document.querySelectorAll(".nav button");
 
     function showPage(id){
-      pages.forEach(pid => {
-        const el = document.getElementById(pid);
-        if(el) el.classList.toggle("active", pid === id);
-      });
-
+      pages.forEach(pid => document.getElementById(pid)?.classList.toggle("active", pid === id));
       navButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.page === id));
       window.scrollTo({top:0, behavior:"smooth"});
     }
 
-    navButtons.forEach(btn => {
-      btn.addEventListener("click", () => showPage(btn.dataset.page));
-    });
+    navButtons.forEach(btn => btn.addEventListener("click", () => showPage(btn.dataset.page)));
 
     document.addEventListener("click", (e) => {
       const go = e.target.closest("[data-pagego]");
@@ -1374,39 +881,30 @@
     document.getElementById("floatOrder").addEventListener("click", () => showPage("payment"));
 
     document.getElementById("btnHelp").addEventListener("click", () => {
-      toast("Cara order: (1) pilih aplikasi & paket (2) tanya stok jika perlu (3) bayar via QRIS (4) klik Kirim WhatsApp + lampirkan bukti pembayaran.");
+      toast("Cara order: (1) pilih aplikasi/kuota (2) tanya stok terlebih dahulu (3) bayar via QRIS (4) kirim bukti pembayaran ke WhatsApp admin.");
     });
 
-    const search = document.getElementById("search");
-    const productList = document.getElementById("productList");
-    const items = Array.from(productList.querySelectorAll(".product"));
+    function setupSearch(inputId, listId, itemSelector){
+      const input = document.getElementById(inputId);
+      const list = document.getElementById(listId);
+      const items = Array.from(list.querySelectorAll(itemSelector));
 
-    search.addEventListener("input", () => {
-      const q = (search.value || "").trim().toLowerCase();
-      items.forEach(el => {
-        const name = (el.dataset.name || "").toLowerCase();
-        el.style.display = (!q || name.includes(q)) ? "" : "none";
+      input.addEventListener("input", () => {
+        const q = (input.value || "").trim().toLowerCase();
+        items.forEach(el => {
+          const name = (el.dataset.name || "").toLowerCase();
+          el.style.display = (!q || name.includes(q)) ? "" : "none";
+        });
       });
-    });
+    }
 
-    document.getElementById("copyBtn").addEventListener("click", async () => {
-      const norek = document.getElementById("norek").innerText.trim();
-      try{
-        await navigator.clipboard.writeText(norek);
-        toast("Nomor rekening disalin: " + norek);
-      }catch{
-        toast("Gagal menyalin. Salin manual: " + norek);
-      }
-    });
+    setupSearch("searchPremium", "premiumList", ".product");
+    setupSearch("searchKuota", "quotaList", ".quota-card");
 
     const modal = document.getElementById("modal");
-
     document.getElementById("openQris").addEventListener("click", () => modal.classList.add("show"));
     document.getElementById("closeQris").addEventListener("click", () => modal.classList.remove("show"));
-
-    modal.addEventListener("click", (e) => {
-      if(e.target === modal) modal.classList.remove("show");
-    });
+    modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("show"); });
 
     const WA_NUMBER = "6283879300243";
     const nama = document.getElementById("nama");
@@ -1417,19 +915,20 @@
 
     function buildMessage(){
       const n = (nama.value || "—").trim();
-      const m = (metode.value || "—").trim();
+      const m = (metode.value || "QRIS").trim();
       const p = (pesanan.value || "—").trim();
       const c = (catatan.value || "").trim();
 
-      let msg =
-`Halo Admin NORS STORE!
+      let msg = `Halo Admin NORS STORE!
 
 Nama: ${n}
 Metode bayar: ${m}
 Pesanan: ${p}`;
+      if(c) msg += `
+Catatan: ${c}`;
+      msg += `
 
-      if(c) msg += `\nCatatan: ${c}`;
-      msg += `\n\nSaya sudah siap order. Mohon info stok & prosesnya ya. Terima kasih!`;
+Saya sudah siap order. Mohon info stok & prosesnya ya. Terima kasih!`;
       return msg;
     }
 
@@ -1452,10 +951,7 @@ Pesanan: ${p}`;
 
     document.getElementById("sendWa").addEventListener("click", () => {
       const msg = buildMessage();
-      if(!msg || msg.includes("Pesanan: —")){
-        toast("Isi minimal nama & pesanan dulu ya.");
-        return;
-      }
+      if(!msg || msg.includes("Pesanan: —")) return toast("Isi minimal nama & pesanan dulu ya.");
 
       const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
       window.open(url, "_blank", "noopener,noreferrer");
@@ -1471,11 +967,10 @@ Pesanan: ${p}`;
 
     document.querySelectorAll(".orderBtn").forEach(btn => {
       btn.addEventListener("click", (e) => {
-        const card = e.target.closest(".product");
-        const orderText = (card?.dataset?.order || card?.querySelector(".pname")?.textContent || "Order").trim();
+        const card = e.target.closest(".product, .quota-card");
+        const orderText = (card?.dataset?.order || "Order").trim();
 
         showPage("payment");
-
         const current = (pesanan.value || "").trim();
         pesanan.value = current ? (current + " | " + orderText) : orderText;
         preview.textContent = buildMessage();
@@ -1484,7 +979,6 @@ Pesanan: ${p}`;
     });
 
     let tmr;
-
     function toast(text){
       const box = document.getElementById("toast");
       const tt = document.getElementById("toastText");
